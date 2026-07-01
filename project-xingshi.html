@@ -1,0 +1,1157 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>醒狮游灯录 - 刘奕轩作品集</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Noto+Serif+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --color-bg-primary: #1a1a1a;
+            --color-bg-secondary: #242424;
+            --color-text-primary: #f0f0f0;
+            --color-text-secondary: #a0a0a0;
+            --color-text-muted: #6a6a6a;
+            --color-accent: #c4a77d;
+            --color-border: #333333;
+            --font-en: 'Playfair Display', serif;
+            --font-cn: 'Noto Serif SC', serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-cn), serif;
+            background-color: var(--color-bg-primary);
+            color: var(--color-text-primary);
+            line-height: 1.8;
+            overflow-x: hidden;
+            opacity: 0;
+            transition: opacity 1s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        body.js-loaded {
+            opacity: 1;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 3rem;
+            background: rgba(26, 26, 26, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--color-border);
+            transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .nav-brand {
+            font-family: var(--font-en);
+            font-size: 0.875rem;
+            letter-spacing: 0.2em;
+            color: var(--color-text-primary);
+        }
+
+        .nav-author {
+            font-size: 0.75rem;
+            color: var(--color-text-muted);
+            letter-spacing: 0.1em;
+        }
+
+        .nav-right {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            font-family: var(--font-en);
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            color: var(--color-text-muted);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        .nav-link:hover {
+            color: var(--color-text-primary);
+        }
+
+        .project-header {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 8rem 2rem 4rem;
+            position: relative;
+        }
+
+        .header-image {
+            width: 100%;
+            max-width: 900px;
+            margin-bottom: 4rem;
+            border-radius: 4px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .header-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 4px;
+        }
+
+        .project-title-container {
+            max-width: 800px;
+        }
+
+        .project-number {
+            font-family: var(--font-en);
+            font-size: 0.75rem;
+            letter-spacing: 0.3em;
+            color: var(--color-accent);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .project-title {
+            font-family: var(--font-en);
+            font-size: 3rem;
+            letter-spacing: 0.1em;
+            color: var(--color-text-primary);
+            margin-bottom: 1.5rem;
+            line-height: 1.4;
+        }
+
+        .project-subtitle {
+            font-family: var(--font-cn);
+            font-size: 1.125rem;
+            color: var(--color-text-secondary);
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        .project-meta {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .meta-item {
+            font-size: 0.875rem;
+            color: var(--color-text-muted);
+        }
+
+        .meta-label {
+            font-family: var(--font-en);
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--color-text-muted);
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+
+        .meta-value {
+            color: var(--color-text-secondary);
+        }
+
+        .project-section {
+            padding: 8rem 0;
+            border-top: 1px solid var(--color-border);
+        }
+
+        .section-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-header {
+            text-align: center;
+        }
+
+        .section-number {
+            font-family: var(--font-en);
+            font-size: 0.875rem;
+            letter-spacing: 0.3em;
+            color: var(--color-accent);
+            display: block;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .section-title {
+            font-family: var(--font-en);
+            font-size: 2rem;
+            letter-spacing: 0.1em;
+            color: var(--color-text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .section-title-cn {
+            font-family: var(--font-cn);
+            font-size: 1rem;
+            color: var(--color-text-muted);
+            font-weight: 300;
+            letter-spacing: 0.15em;
+        }
+
+        .project-footer {
+            padding: 4rem 2rem;
+            text-align: center;
+            border-top: 1px solid var(--color-border);
+            margin-top: 8rem;
+        }
+
+        .footer-text {
+            font-size: 0.875rem;
+            color: var(--color-text-muted);
+            margin-bottom: 2rem;
+        }
+
+        .back-link {
+            font-family: var(--font-en);
+            font-size: 0.875rem;
+            letter-spacing: 0.15em;
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            padding-bottom: 0.25rem;
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: var(--color-accent);
+            border-color: var(--color-accent);
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 1rem 1.5rem;
+            }
+
+            .nav-right {
+                gap: 1rem;
+            }
+
+            .project-header {
+                padding: 6rem 1rem 3rem;
+            }
+
+            .project-title {
+                font-size: 1.75rem;
+            }
+
+            .project-meta {
+                gap: 1.5rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .scale-in {
+            opacity: 0;
+            transform: scale(0.95);
+            transition: opacity 1s cubic-bezier(0.22, 1, 0.36, 1), transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .scale-in.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Overview Content Styles */
+        .overview-content {
+            max-width: 700px;
+            margin: 3rem auto 0;
+        }
+
+        .overview-block {
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .overview-block:last-of-type {
+            border-bottom: none;
+        }
+
+        .overview-title {
+            font-family: var(--font-cn);
+            font-size: 1rem;
+            color: var(--color-text-primary);
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .project-name-cn {
+            font-family: var(--font-en);
+            font-size: 1.5rem;
+            letter-spacing: 0.1em;
+            color: var(--color-text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .project-name-en {
+            font-family: var(--font-en);
+            font-size: 0.9rem;
+            letter-spacing: 0.2em;
+            color: var(--color-accent);
+            margin-bottom: 0.75rem;
+        }
+
+        .project-category {
+            font-size: 0.875rem;
+            color: var(--color-text-muted);
+        }
+
+        .overview-text {
+            font-size: 0.95rem;
+            color: var(--color-text-secondary);
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .overview-text:last-child {
+            margin-bottom: 0;
+        }
+
+        .goal-list {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .goal-item {
+            font-size: 0.9rem;
+            color: var(--color-text-secondary);
+            padding: 0.75rem 1rem;
+            background: rgba(36, 36, 36, 0.5);
+            border-left: 2px solid var(--color-accent);
+        }
+
+        .role-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .role-tag {
+            font-size: 0.82rem;
+            color: var(--color-accent);
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--color-accent);
+            border-radius: 2px;
+        }
+
+        @media (max-width: 600px) {
+            .goal-list {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Research Content Styles */
+        .research-content {
+            max-width: 700px;
+            margin: 3rem auto 0;
+        }
+
+        .research-block {
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .research-block:last-of-type {
+            border-bottom: none;
+        }
+
+        .research-title {
+            font-family: var(--font-cn);
+            font-size: 1rem;
+            color: var(--color-text-primary);
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .research-subtitle {
+            font-family: var(--font-en);
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            color: var(--color-accent);
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .research-text {
+            font-size: 0.95rem;
+            color: var(--color-text-secondary);
+            line-height: 1.8;
+        }
+
+        .keyword-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .keyword-tag {
+            font-size: 0.82rem;
+            color: var(--color-text-primary);
+            padding: 0.6rem 1.2rem;
+            background: rgba(196, 167, 125, 0.1);
+            border: 1px solid rgba(196, 167, 125, 0.3);
+            border-radius: 20px;
+        }
+
+        .visual-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .visual-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: rgba(36, 36, 36, 0.5);
+            border-radius: 4px;
+        }
+
+        .visual-icon {
+            font-size: 2rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .visual-label {
+            font-size: 0.85rem;
+            color: var(--color-text-secondary);
+        }
+
+        .process-flow {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .process-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1.5rem;
+            background: rgba(36, 36, 36, 0.5);
+            border-radius: 4px;
+        }
+
+        .process-number {
+            font-family: var(--font-en);
+            font-size: 0.75rem;
+            color: var(--color-accent);
+            font-weight: 600;
+        }
+
+        .process-text {
+            font-size: 0.9rem;
+            color: var(--color-text-secondary);
+        }
+
+        .process-arrow {
+            font-size: 1rem;
+            color: var(--color-accent);
+            margin: 0.25rem 0;
+        }
+
+        @media (max-width: 600px) {
+            .visual-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Strategy Content Styles */
+        .strategy-content {
+            max-width: 700px;
+            margin: 3rem auto 0;
+        }
+
+        .strategy-block {
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .strategy-block:last-of-type {
+            border-bottom: none;
+        }
+
+        .strategy-title {
+            font-family: var(--font-cn);
+            font-size: 1rem;
+            color: var(--color-text-primary);
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .strategy-highlight {
+            font-family: var(--font-en);
+            font-size: 1.1rem;
+            letter-spacing: 0.05em;
+            color: var(--color-text-primary);
+            line-height: 1.6;
+            padding: 1.5rem;
+            background: rgba(196, 167, 125, 0.08);
+            border-left: 3px solid var(--color-accent);
+        }
+
+        .strategy-text {
+            font-size: 0.95rem;
+            color: var(--color-text-secondary);
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .strategy-text:last-child {
+            margin-bottom: 0;
+        }
+
+        .innovation-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .innovation-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: rgba(36, 36, 36, 0.5);
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .innovation-item:hover {
+            transform: translateY(-2px);
+            border-color: var(--color-accent);
+        }
+
+        .innovation-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .innovation-name {
+            font-family: var(--font-cn);
+            font-size: 0.9rem;
+            color: var(--color-text-secondary);
+            font-weight: 400;
+        }
+
+        @media (max-width: 600px) {
+            .innovation-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Story Content Styles */
+        .story-content {
+            max-width: 700px;
+            margin: 3rem auto 0;
+        }
+
+        .story-block {
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .story-block:last-of-type {
+            border-bottom: none;
+        }
+
+        .story-title {
+            font-family: var(--font-cn);
+            font-size: 1rem;
+            color: var(--color-text-primary);
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .story-text {
+            font-size: 0.95rem;
+            color: var(--color-text-secondary);
+            line-height: 1.8;
+        }
+
+        .storyboard {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .story-panel {
+            background: rgba(36, 36, 36, 0.5);
+            border-radius: 4px;
+            padding: 1.25rem 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .story-panel:hover {
+            transform: translateX(5px);
+            border-left: 2px solid var(--color-accent);
+        }
+
+        .panel-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .panel-number {
+            font-family: var(--font-en);
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            color: var(--color-accent);
+            text-transform: uppercase;
+        }
+
+        .panel-title {
+            font-family: var(--font-cn);
+            font-size: 1rem;
+            color: var(--color-text-primary);
+            font-weight: 500;
+        }
+
+        .panel-desc {
+            font-size: 0.875rem;
+            color: var(--color-text-secondary);
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* Illustration Content Styles */
+        .illustration-content {
+            max-width: 1000px;
+            margin: 3rem auto 0;
+        }
+
+        .illustration-single {
+            width: 100%;
+            max-width: 900px;
+            aspect-ratio: 1.41/1;
+            object-fit: cover;
+            margin: 0 auto 2rem;
+            display: block;
+            border-radius: 4px;
+        }
+
+        .illustration-pair {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .illustration-pair img {
+            width: 100%;
+            aspect-ratio: 1.41/1;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        @media (max-width: 600px) {
+            .illustration-pair {
+                grid-template-columns: 1fr;
+            }
+
+            .illustration-single {
+                aspect-ratio: 4/3;
+            }
+        }
+
+        /* Reflection Xingshi Content Styles */
+        .reflection-xs-content {
+            max-width: 700px;
+            margin: 3rem auto 0;
+        }
+
+        .reflection-xs-block {
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .reflection-xs-block:last-of-type {
+            border-bottom: none;
+        }
+
+        .reflection-xs-title {
+            font-family: var(--font-cn);
+            font-size: 1rem;
+            color: var(--color-text-primary);
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .reflection-xs-text {
+            font-size: 0.95rem;
+            color: var(--color-text-secondary);
+            line-height: 1.8;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-left">
+            <span class="nav-brand">PORTFOLIO 2026</span>
+            <span class="nav-author">LIU YIXUAN</span>
+        </div>
+        <div class="nav-right">
+            <a href="index.html#home" class="nav-link">HOME</a>
+            <a href="index.html#contents" class="nav-link">CONTENTS</a>
+            <a href="index.html#about" class="nav-link">ABOUT</a>
+            <a href="index.html#contact" class="nav-link">CONTACT</a>
+        </div>
+    </nav>
+
+    <header class="project-header fade-in">
+        <div class="header-image scale-in">
+            <img src="images/xingshi-cover.jpg" alt="醒狮游灯录封面">
+        </div>
+        <div class="project-title-container">
+            <span class="project-number">非遗主题插漫画</span>
+            <h1 class="project-title">醒狮游灯录</h1>
+            <p class="project-subtitle">以醒狮文化为灵感的插画创作，探索传统非遗与现代视觉叙事的融合</p>
+            <div class="project-meta">
+                <div class="meta-item">
+                    <span class="meta-label">Type</span>
+                    <span class="meta-value">插漫画创作</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Theme</span>
+                    <span class="meta-value">醒狮非遗</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Tools</span>
+                    <span class="meta-value">AI辅助 + 手绘</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="project-section">
+        <div class="section-container">
+            <div class="section-header fade-in">
+                <span class="section-number">01</span>
+                <h2 class="section-title">项目概述</h2>
+                <p class="section-title-cn">OVERVIEW</p>
+            </div>
+
+            <div class="overview-content fade-in">
+                <div class="overview-block">
+                    <h4 class="overview-title">项目名称</h4>
+                    <p class="project-name-cn">《醒狮游灯录》</p>
+                    <p class="project-name-en">Lion Dance Parade</p>
+                    <p class="project-category">非遗主题插漫画设计</p>
+                </div>
+
+                <div class="overview-block">
+                    <h4 class="overview-title">项目背景</h4>
+                    <p class="overview-text">岭南醒狮作为国家级非物质文化遗产，承载着驱邪纳福、祈求吉祥、团结奋进等文化寓意。然而，在年轻群体的日常生活中，醒狮文化更多停留于节庆表演，缺少能够持续传播与阅读体验的内容载体。</p>
+                    <p class="overview-text">本项目以"插漫画"的形式，将传统醒狮文化转化为适合当代年轻人阅读的视觉故事，希望通过角色叙事重新激活传统文化的生命力。</p>
+                </div>
+
+                <div class="overview-block">
+                    <h4 class="overview-title">项目目标</h4>
+                    <ul class="goal-list">
+                        <li class="goal-item">传播岭南醒狮文化</li>
+                        <li class="goal-item">建立年轻化视觉表达</li>
+                        <li class="goal-item">强化非遗故事体验</li>
+                        <li class="goal-item">探索传统文化数字化传播</li>
+                    </ul>
+                </div>
+
+                <div class="overview-block">
+                    <h4 class="overview-title">我的职责</h4>
+                    <div class="role-grid">
+                        <span class="role-tag">文化调研</span>
+                        <span class="role-tag">故事策划</span>
+                        <span class="role-tag">角色设计</span>
+                        <span class="role-tag">场景设计</span>
+                        <span class="role-tag">插漫画创作</span>
+                        <span class="role-tag">版式设计</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="project-section">
+        <div class="section-container">
+            <div class="section-header fade-in">
+                <span class="section-number">02</span>
+                <h2 class="section-title">文化研究</h2>
+                <p class="section-title-cn">CULTURAL RESEARCH</p>
+            </div>
+
+            <div class="research-content fade-in">
+                <div class="research-block">
+                    <h4 class="research-title">非遗背景</h4>
+                    <p class="research-text">岭南醒狮起源于广东地区，是中国南狮文化的重要代表，融合了武术、鼓乐、民俗与节庆仪式，被广泛应用于春节、开业、祭典等重要场合，象征吉祥、勇气与生机。</p>
+                </div>
+
+                <div class="research-block">
+                    <h4 class="research-title">醒狮文化关键词</h4>
+                    <div class="keyword-tags">
+                        <span class="keyword-tag">采青</span>
+                        <span class="keyword-tag">鼓乐</span>
+                        <span class="keyword-tag">巡游</span>
+                        <span class="keyword-tag">祥瑞</span>
+                        <span class="keyword-tag">合作</span>
+                        <span class="keyword-tag">传承</span>
+                    </div>
+                </div>
+
+                <div class="research-block">
+                    <h4 class="research-title">视觉元素提炼</h4>
+                    <div class="visual-grid">
+                        <div class="visual-item">
+                            <div class="visual-icon">🦁</div>
+                            <span class="visual-label">狮头</span>
+                        </div>
+                        <div class="visual-item">
+                            <div class="visual-icon">🥁</div>
+                            <span class="visual-label">鼓乐</span>
+                        </div>
+                        <div class="visual-item">
+                            <div class="visual-icon">🏮</div>
+                            <span class="visual-label">花灯</span>
+                        </div>
+                        <div class="visual-item">
+                            <div class="visual-icon">🌿</div>
+                            <span class="visual-label">采青</span>
+                        </div>
+                        <div class="visual-item">
+                            <div class="visual-icon">🚶</div>
+                            <span class="visual-label">巡街</span>
+                        </div>
+                        <div class="visual-item">
+                            <div class="visual-icon">🔥</div>
+                            <span class="visual-label">红绸</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="research-block">
+                    <h4 class="research-title">Design Insight</h4>
+                    <p class="research-subtitle">设计洞察</p>
+                    <p class="research-text">相较于静态介绍醒狮文化，以一只"小醒狮"的成长旅程串联传统仪式，让读者跟随角色体验巡游、采青、鼓乐等文化场景，更容易建立文化认知与情感共鸣。</p>
+                </div>
+
+                <div class="research-block">
+                    <h4 class="research-title">传播流程</h4>
+                    <div class="process-flow">
+                        <div class="process-item">
+                            <span class="process-number">01</span>
+                            <span class="process-text">传统文化</span>
+                        </div>
+                        <div class="process-arrow">↓</div>
+                        <div class="process-item">
+                            <span class="process-number">02</span>
+                            <span class="process-text">故事体验</span>
+                        </div>
+                        <div class="process-arrow">↓</div>
+                        <div class="process-item">
+                            <span class="process-number">03</span>
+                            <span class="process-text">角色陪伴</span>
+                        </div>
+                        <div class="process-arrow">↓</div>
+                        <div class="process-item">
+                            <span class="process-number">04</span>
+                            <span class="process-text">情感共鸣</span>
+                        </div>
+                        <div class="process-arrow">↓</div>
+                        <div class="process-item">
+                            <span class="process-number">05</span>
+                            <span class="process-text">文化传播</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="project-section">
+        <div class="section-container">
+            <div class="section-header fade-in">
+                <span class="section-number">03</span>
+                <h2 class="section-title">创意策略</h2>
+                <p class="section-title-cn">DESIGN STRATEGY</p>
+            </div>
+
+            <div class="strategy-content fade-in">
+                <div class="strategy-block">
+                    <h4 class="strategy-title">核心创意</h4>
+                    <p class="strategy-highlight">让一只小醒狮，带领读者完成一场属于岭南的新春巡游。</p>
+                </div>
+
+                <div class="strategy-block">
+                    <h4 class="strategy-title">创作理念</h4>
+                    <p class="strategy-text">传统文化的传播，不应只是知识传递，更应成为一种沉浸式体验。</p>
+                    <p class="strategy-text">因此，本项目以"小醒狮苏醒"作为故事起点，通过巡游、鼓乐、采青等经典文化场景，将传统仪式转化为具有连续叙事性的视觉旅程，使文化内容更加亲近年轻读者。</p>
+                </div>
+
+                <div class="strategy-block">
+                    <h4 class="strategy-title">创新表达</h4>
+                    <div class="innovation-grid">
+                        <div class="innovation-item">
+                            <div class="innovation-icon">📖</div>
+                            <h5 class="innovation-name">文化故事化</h5>
+                        </div>
+                        <div class="innovation-item">
+                            <div class="innovation-icon">🎨</div>
+                            <h5 class="innovation-name">插漫画表达</h5>
+                        </div>
+                        <div class="innovation-item">
+                            <div class="innovation-icon">🌈</div>
+                            <h5 class="innovation-name">现代色彩语言</h5>
+                        </div>
+                        <div class="innovation-item">
+                            <div class="innovation-icon">✨</div>
+                            <h5 class="innovation-name">非遗年轻化</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="project-section">
+        <div class="section-container">
+            <div class="section-header fade-in">
+                <span class="section-number">04</span>
+                <h2 class="section-title">故事构建</h2>
+                <p class="section-title-cn">STORY DESIGN</p>
+            </div>
+
+            <div class="story-content fade-in">
+                <div class="story-block">
+                    <h4 class="story-title">故事简介</h4>
+                    <p class="story-text">作品以春节期间岭南地区传统醒狮活动为文化背景，通过十幅连续叙事插画，讲述一只沉睡的小醒狮在鼓声、灯火与民俗仪式中逐渐苏醒，并跟随人们穿越古城、参与巡游、采青迎春的故事。</p>
+                </div>
+
+                <div class="story-block">
+                    <h4 class="story-title">分镜脚本</h4>
+                    <div class="storyboard">
+                        <div class="story-panel">
+                            <div class="panel-header">
+                                <span class="panel-number">第一幕</span>
+                                <span class="panel-title">古戏台</span>
+                            </div>
+                            <p class="panel-desc">岭南旧戏台承载着几代人的春节记忆，沉睡的醒狮等待春日到来。</p>
+                        </div>
+                        <div class="story-panel">
+                            <div class="panel-header">
+                                <span class="panel-number">第二幕</span>
+                                <span class="panel-title">第一声鼓</span>
+                            </div>
+                            <p class="panel-desc">老鼓手敲响第一声春鼓，鼓声唤醒沉睡的狮魂。</p>
+                        </div>
+                        <div class="story-panel">
+                            <div class="panel-header">
+                                <span class="panel-number">第三幕</span>
+                                <span class="panel-title">游神入城</span>
+                            </div>
+                            <p class="panel-desc">游神队伍穿过岭南古城，醒狮在前方开路。</p>
+                        </div>
+                        <div class="story-panel">
+                            <div class="panel-header">
+                                <span class="panel-number">第四幕</span>
+                                <span class="panel-title">爆竹巡街</span>
+                            </div>
+                            <p class="panel-desc">爆竹声响起，醒狮穿越街巷，为人们驱邪纳福。</p>
+                        </div>
+                        <div class="story-panel">
+                            <div class="panel-header">
+                                <span class="panel-number">第五幕</span>
+                                <span class="panel-title">采青</span>
+                            </div>
+                            <p class="panel-desc">醒狮跃上高处采青，完成迎春仪式。</p>
+                        </div>
+                        <div class="story-panel">
+                            <div class="panel-header">
+                                <span class="panel-number">第六幕</span>
+                                <span class="panel-title">百鼓迎春</span>
+                            </div>
+                            <p class="panel-desc">不同醒狮队伍汇聚，鼓点连接整座城市。</p>
+                        </div>
+                        <div class="story-panel">
+                            <div class="panel-header">
+                                <span class="panel-number">第七幕</span>
+                                <span class="panel-title">灯火岭南</span>
+                            </div>
+                            <p class="panel-desc">醒狮穿过骑楼街巷，融入百姓生活。</p>
+                        </div>
+                        <div class="story-panel">
+                            <div class="panel-header">
+                                <span class="panel-number">第八幕</span>
+                                <span class="panel-title">狮跃云间</span>
+                            </div>
+                            <p class="panel-desc">醒狮在鼓声中展现生命力量。</p>
+                        </div>
+                        <div class="story-panel">
+                            <div class="panel-header">
+                                <span class="panel-number">第九幕</span>
+                                <span class="panel-title">万家灯火</span>
+                            </div>
+                            <p class="panel-desc">巡游结束，祝福留在人间。</p>
+                        </div>
+                        <div class="story-panel">
+                            <div class="panel-header">
+                                <span class="panel-number">第十幕</span>
+                                <span class="panel-title">醒</span>
+                            </div>
+                            <p class="panel-desc">醒狮再次回归春天，象征文化不断传承。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="project-section">
+        <div class="section-container">
+            <div class="section-header fade-in">
+                <span class="section-number">05</span>
+                <h2 class="section-title">插画展示</h2>
+                <p class="section-title-cn">ILLUSTRATION PREVIEW</p>
+            </div>
+
+            <div class="illustration-content fade-in">
+                <!-- 第一张单独排列 -->
+                <img src="images/xingshi-1.jpg" alt="插画1" class="illustration-single">
+
+                <!-- 2-3 两两对页排列 -->
+                <div class="illustration-pair">
+                    <img src="images/xingshi-2.jpg" alt="插画2">
+                    <img src="images/xingshi-3.jpg" alt="插画3">
+                </div>
+
+                <!-- 4-5 两两对页排列 -->
+                <div class="illustration-pair">
+                    <img src="images/xingshi-4.jpg" alt="插画4">
+                    <img src="images/xingshi-5.jpg" alt="插画5">
+                </div>
+
+                <!-- 6-7 两两对页排列 -->
+                <div class="illustration-pair">
+                    <img src="images/xingshi-6.jpg" alt="插画6">
+                    <img src="images/xingshi-7.jpg" alt="插画7">
+                </div>
+
+                <!-- 8-9 两两对页排列 -->
+                <div class="illustration-pair">
+                    <img src="images/xingshi-8.jpg" alt="插画8">
+                    <img src="images/xingshi-9.jpg" alt="插画9">
+                </div>
+
+                <!-- 10-11 两两对页排列 -->
+                <div class="illustration-pair">
+                    <img src="images/xingshi-10.jpg" alt="插画10">
+                    <img src="images/xingshi-11.jpg" alt="插画11">
+                </div>
+
+                <!-- 最后一张单独排列 -->
+                <img src="images/xingshi-12.jpg" alt="插画12" class="illustration-single">
+            </div>
+        </div>
+    </section>
+
+    <section class="project-section">
+        <div class="section-container">
+            <div class="section-header fade-in">
+                <span class="section-number">06</span>
+                <h2 class="section-title">项目总结</h2>
+                <p class="section-title-cn">REFLECTION</p>
+            </div>
+
+            <div class="reflection-xs-content fade-in">
+                <div class="reflection-xs-block">
+                    <h4 class="reflection-xs-title">项目成果</h4>
+                    <p class="reflection-xs-text">本项目以岭南醒狮文化为创作核心，通过插漫画的形式重新构建传统文化叙事，将醒狮巡游、鼓乐、采青等非遗元素转化为适合当代阅读习惯的视觉故事，在保留文化精神的同时，探索了传统文化年轻化表达的可能性。</p>
+                </div>
+
+                <div class="reflection-xs-block">
+                    <h4 class="reflection-xs-title">设计思考</h4>
+                    <p class="reflection-xs-text">相比直接介绍非遗知识，我更希望通过角色成长与故事体验，让读者在阅读过程中自然理解醒狮文化的精神内涵。故事中的每一次巡游、每一次鼓点、每一次采青，都不仅是传统仪式的再现，更是文化情感的传递。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="project-footer">
+        <p class="footer-text">《醒狮游灯录》- 刘奕轩作品集</p>
+        <a href="index.html#contents" class="back-link">BACK TO PORTFOLIO</a>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.body.classList.add('js-loaded');
+
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, observerOptions);
+
+            const animatedElements = document.querySelectorAll('.fade-in, .scale-in');
+            animatedElements.forEach(function(el) {
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>

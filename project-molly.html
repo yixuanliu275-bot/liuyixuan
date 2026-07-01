@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>画出我的世界 - 刘奕轩作品集</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Noto+Serif+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --color-bg-primary: #f8f7f5;
+            --color-bg-secondary: #ffffff;
+            --color-text-primary: #2c2c2c;
+            --color-text-secondary: #5a5a5a;
+            --color-text-muted: #8a8a8a;
+            --color-accent: #8ba888;
+            --color-border: #e8e6e3;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Noto Serif SC', serif;
+            background-color: var(--color-bg-primary);
+            color: var(--color-text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            opacity: 0;
+            transition: opacity 1s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        body.js-loaded {
+            opacity: 1;
+        }
+
+        ::selection {
+            background: var(--color-accent);
+            color: #fff;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 3rem;
+            background: rgba(248, 247, 245, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--color-border);
+            transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .navbar.scrolled {
+            padding: 0.8rem 3rem;
+            background: rgba(248, 247, 245, 0.98);
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .nav-brand {
+            font-family: 'Playfair Display', serif;
+            font-size: 0.875rem;
+            letter-spacing: 0.2em;
+            color: var(--color-text-primary);
+        }
+
+        .nav-author {
+            font-size: 0.75rem;
+            color: var(--color-text-muted);
+        }
+
+        .nav-right {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            transition: color 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .nav-link:hover {
+            color: var(--color-accent);
+        }
+
+        .hero-section {
+            padding: 12rem 3rem 6rem;
+            text-align: center;
+            background: linear-gradient(180deg, #f0f4f0 0%, #f8f7f5 100%);
+        }
+
+        .hero-content {
+            margin-bottom: 4rem;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 600;
+            color: var(--color-text-primary);
+            margin-bottom: 1rem;
+            letter-spacing: 0.1em;
+        }
+
+        .hero-subtitle {
+            font-size: 1rem;
+            color: var(--color-text-muted);
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.2em;
+        }
+
+        .hero-desc {
+            font-size: 0.9rem;
+            color: var(--color-text-secondary);
+            font-style: italic;
+        }
+
+        .hero-image {
+            max-width: 900px;
+            width: 100%;
+            margin: 0 auto;
+            position: relative;
+            cursor: pointer;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .hero-image:hover {
+            transform: translateY(-4px);
+        }
+
+        .hero-image img {
+            width: 100%;
+            display: block;
+        }
+
+        .hero-image .play-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .hero-image:hover .play-overlay {
+            opacity: 1;
+        }
+
+        .hero-image .play-icon {
+            width: 70px;
+            height: 70px;
+            border: 2px solid #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: #fff;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .project-section {
+            padding: 6rem 3rem;
+            background: var(--color-bg-secondary);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .section-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--color-accent);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--color-text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .section-title-cn {
+            font-size: 0.9rem;
+            color: var(--color-text-muted);
+            letter-spacing: 0.15em;
+        }
+
+        .image-section {
+            width: 100%;
+        }
+
+        .full-width-image {
+            width: 100%;
+            display: block;
+            border-radius: 4px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .image-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .stacked-image {
+            width: 100%;
+            display: block;
+            border-radius: 4px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .project-footer {
+            padding: 4rem 3rem;
+            text-align: center;
+            background: var(--color-bg-primary);
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            transition: color 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+            letter-spacing: 0.1em;
+        }
+
+        .back-link:hover {
+            color: var(--color-accent);
+        }
+
+        /* 动画效果 */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 1s cubic-bezier(0.22, 1, 0.36, 1), transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .fade-in-left {
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: opacity 1s cubic-bezier(0.22, 1, 0.36, 1), transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .fade-in-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .fade-in-right {
+            opacity: 0;
+            transform: translateX(30px);
+            transition: opacity 1s cubic-bezier(0.22, 1, 0.36, 1), transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .fade-in-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .scale-in {
+            opacity: 0;
+            transform: scale(0.95);
+            transition: opacity 1s cubic-bezier(0.22, 1, 0.36, 1), transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .scale-in.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .video-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1), visibility 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .video-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .video-modal-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+        }
+
+        .video-modal-content {
+            position: relative;
+            max-width: 900px;
+            width: 90%;
+            max-height: 80vh;
+            margin: 10vh auto;
+            background: #fff;
+            border-radius: 4px;
+            overflow: hidden;
+            transform: scale(0.95);
+            transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .video-modal.active .video-modal-content {
+            transform: scale(1);
+        }
+
+        .video-modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 40px;
+            height: 40px;
+            background: rgba(0, 0, 0, 0.3);
+            border: none;
+            border-radius: 50%;
+            color: #fff;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .video-modal-close:hover {
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .video-modal-header {
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .video-modal-title {
+            margin: 0;
+            font-size: 1.25rem;
+            font-weight: 500;
+            color: var(--color-text-primary);
+        }
+
+        .video-modal-desc {
+            margin: 0.5rem 0 0;
+            font-size: 0.875rem;
+            color: var(--color-text-muted);
+        }
+
+        .video-modal-body {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            background: #000;
+        }
+
+        .video-player-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .video-loading {
+            text-align: center;
+            color: #fff;
+        }
+
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-top-color: #fff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .video-player-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 1rem;
+            }
+
+            .nav-right {
+                gap: 1rem;
+            }
+
+            .hero-section {
+                padding: 8rem 1rem 4rem;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .project-section {
+                padding: 4rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <script>
+        document.documentElement.classList.add('js-loaded');
+    </script>
+
+    <nav class="navbar">
+        <div class="nav-left">
+            <span class="nav-brand">PORTFOLIO 2026</span>
+            <span class="nav-author">刘奕轩</span>
+        </div>
+        <div class="nav-right">
+            <a href="index.html#home" class="nav-link">HOME</a>
+            <a href="index.html#contents" class="nav-link">CONTENTS</a>
+            <a href="index.html#about" class="nav-link">ABOUT</a>
+            <a href="index.html#contact" class="nav-link">CONTACT</a>
+        </div>
+    </nav>
+
+    <header class="hero-section">
+        <div class="hero-content fade-in">
+            <h1 class="hero-title">画出我的世界</h1>
+            <p class="hero-subtitle">POP MART MOLLY 20TH ANNIVERSARY</p>
+            <p class="hero-desc">治愈幻想系品牌动画短片</p>
+        </div>
+        <div class="hero-image video-trigger scale-in" data-video-bvid="BV1AL746fE5J" data-video-time="16.0">
+            <img src="images/huachu-wodeshijie.jpg" alt="画出我的世界">
+            <div class="play-overlay">
+                <div class="play-icon">▶</div>
+            </div>
+        </div>
+    </header>
+
+    <section class="project-section">
+        <div class="section-container">
+            <div class="section-header fade-in">
+                <span class="section-number">01</span>
+                <h2 class="section-title">设计背景</h2>
+                <p class="section-title-cn">DESIGN BACKGROUND</p>
+            </div>
+            <div class="image-section scale-in">
+                <img src="images/molly-1.jpg" alt="设计背景" class="full-width-image">
+            </div>
+        </div>
+    </section>
+
+    <section class="project-section" style="background: var(--color-bg-primary);">
+        <div class="section-container">
+            <div class="section-header fade-in">
+                <span class="section-number">02</span>
+                <h2 class="section-title">用户洞察</h2>
+                <p class="section-title-cn">USER INSIGHT</p>
+            </div>
+            <div class="image-section scale-in">
+                <img src="images/molly-2.jpg" alt="用户洞察" class="full-width-image">
+            </div>
+        </div>
+    </section>
+
+    <section class="project-section">
+        <div class="section-container">
+            <div class="section-header fade-in">
+                <span class="section-number">03</span>
+                <h2 class="section-title">设计创意</h2>
+                <p class="section-title-cn">DESIGN CONCEPT</p>
+            </div>
+            <div class="image-section scale-in">
+                <img src="images/molly-3.jpg" alt="设计创意" class="full-width-image">
+            </div>
+        </div>
+    </section>
+
+    <section class="project-section" style="background: var(--color-bg-primary);">
+        <div class="section-container">
+            <div class="section-header fade-in">
+                <span class="section-number">04</span>
+                <h2 class="section-title">技术应用</h2>
+                <p class="section-title-cn">TECHNOLOGY APPLICATION</p>
+            </div>
+            <div class="image-stack">
+                <img src="images/molly-4.jpg" alt="技术应用1" class="stacked-image fade-in-left">
+                <img src="images/molly-5.jpg" alt="技术应用2" class="stacked-image fade-in-right">
+            </div>
+        </div>
+    </section>
+
+    <footer class="project-footer">
+        <div class="footer-content">
+            <a href="index.html" class="back-link">← 返回作品列表</a>
+        </div>
+    </footer>
+
+    <div id="video-modal" class="video-modal">
+        <div class="video-modal-overlay"></div>
+        <div class="video-modal-content">
+            <button class="video-modal-close">
+                <span class="close-icon">×</span>
+            </button>
+            <div class="video-modal-header">
+                <h3 id="video-modal-title" class="video-modal-title">视频标题</h3>
+                <p id="video-modal-desc" class="video-modal-desc">视频描述</p>
+            </div>
+            <div class="video-modal-body">
+                <div id="video-player-container" class="video-player-container">
+                    <div class="video-loading">
+                        <div class="loading-spinner"></div>
+                        <p>加载中...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

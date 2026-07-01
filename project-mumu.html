@@ -1,0 +1,1524 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MUMU的美味之旅 - 刘奕轩作品集</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Noto+Serif+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --color-bg-primary: #1a1a1a;
+            --color-bg-secondary: #242424;
+            --color-text-primary: #f0f0f0;
+            --color-text-secondary: #a0a0a0;
+            --color-text-muted: #6a6a6a;
+            --color-accent: #c4a77d;
+            --color-border: #333333;
+            --font-en: 'Playfair Display', serif;
+            --font-cn: 'Noto Serif SC', serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-cn), serif;
+            background-color: var(--color-bg-primary);
+            color: var(--color-text-primary);
+            line-height: 1.8;
+            overflow-x: hidden;
+            opacity: 0;
+            transition: opacity 1s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        body.js-loaded {
+            opacity: 1;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 3rem;
+            background: rgba(26, 26, 26, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--color-border);
+            transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .nav-brand {
+            font-family: var(--font-en);
+            font-size: 0.875rem;
+            letter-spacing: 0.2em;
+            color: var(--color-text-primary);
+        }
+
+        .nav-author {
+            font-size: 0.75rem;
+            color: var(--color-text-muted);
+            letter-spacing: 0.1em;
+        }
+
+        .nav-right {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            font-family: var(--font-en);
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            color: var(--color-text-muted);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        .nav-link:hover {
+            color: var(--color-text-primary);
+        }
+
+        .project-header {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 8rem 2rem 4rem;
+            position: relative;
+        }
+
+        .header-image {
+            width: 100%;
+            max-width: 900px;
+            margin-bottom: 4rem;
+            border-radius: 4px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .header-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 4px;
+        }
+
+        .project-title-container {
+            max-width: 800px;
+        }
+
+        .project-number {
+            font-family: var(--font-en);
+            font-size: 0.75rem;
+            letter-spacing: 0.3em;
+            color: var(--color-accent);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .project-title {
+            font-family: var(--font-en);
+            font-size: 3rem;
+            letter-spacing: 0.1em;
+            color: var(--color-text-primary);
+            margin-bottom: 1.5rem;
+            line-height: 1.4;
+        }
+
+        .project-subtitle {
+            font-family: var(--font-cn);
+            font-size: 1.125rem;
+            color: var(--color-text-secondary);
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        .project-meta {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .meta-item {
+            font-size: 0.875rem;
+            color: var(--color-text-muted);
+        }
+
+        .meta-label {
+            font-family: var(--font-en);
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--color-text-muted);
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+
+        .meta-value {
+            color: var(--color-text-secondary);
+        }
+
+        .project-section {
+            padding: 8rem 0;
+            border-top: 1px solid var(--color-border);
+        }
+
+        .section-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-header {
+            text-align: center;
+        }
+
+        .section-number {
+            font-family: var(--font-en);
+            font-size: 0.875rem;
+            letter-spacing: 0.3em;
+            color: var(--color-accent);
+            display: block;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .section-title {
+            font-family: var(--font-en);
+            font-size: 2rem;
+            letter-spacing: 0.1em;
+            color: var(--color-text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .section-title-cn {
+            font-family: var(--font-cn);
+            font-size: 1rem;
+            color: var(--color-text-muted);
+            font-weight: 300;
+            letter-spacing: 0.15em;
+        }
+
+        .overview-content {
+            max-width: 700px;
+            margin: 3rem auto 0;
+        }
+
+        .overview-block {
+            margin-bottom: 2.5rem;
+            padding-bottom: 2.5rem;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .overview-block:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .overview-label {
+            font-family: var(--font-en);
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            color: var(--color-accent);
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .overview-value {
+            font-family: var(--font-en);
+            font-size: 1.5rem;
+            letter-spacing: 0.05em;
+            color: var(--color-text-primary);
+        }
+
+        .overview-text {
+            font-size: 1rem;
+            color: var(--color-text-secondary);
+            line-height: 1.9;
+        }
+
+        .overview-list {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem 2rem;
+        }
+
+        .overview-list li {
+            font-size: 0.95rem;
+            color: var(--color-text-secondary);
+            padding-left: 1.25rem;
+            position: relative;
+        }
+
+        .overview-list li::before {
+            content: none;
+        }
+
+        /* Research Content Styles */
+        .research-content {
+            max-width: 700px;
+            margin: 3rem auto 0;
+        }
+
+        .research-part {
+            margin-bottom: 4rem;
+            padding-bottom: 3rem;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .research-part:last-of-type {
+            border-bottom: none;
+        }
+
+        .research-part-title {
+            font-family: var(--font-en);
+            font-size: 0.7rem;
+            letter-spacing: 0.3em;
+            color: var(--color-accent);
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .research-part-subtitle {
+            font-family: var(--font-cn);
+            font-size: 1.25rem;
+            color: var(--color-text-primary);
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+
+        .research-brand-name {
+            font-family: var(--font-en);
+            font-size: 1rem;
+            letter-spacing: 0.1em;
+            color: var(--color-text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .ip-name {
+            font-family: var(--font-en);
+            font-size: 1.25rem;
+            letter-spacing: 0.1em;
+            color: var(--color-text-primary);
+            margin-bottom: 1rem;
+            margin-top: 2rem;
+        }
+
+        .ip-section {
+            margin-bottom: 2rem;
+        }
+
+        .research-block {
+            margin-bottom: 2rem;
+        }
+
+        .research-label {
+            font-family: var(--font-cn);
+            font-size: 0.875rem;
+            color: var(--color-text-muted);
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .research-text {
+            font-size: 0.9rem;
+            color: var(--color-text-secondary);
+            line-height: 1.8;
+        }
+
+        .research-quote {
+            font-family: var(--font-cn);
+            font-size: 1.125rem;
+            color: var(--color-text-primary);
+            margin-bottom: 1rem;
+            font-weight: 500;
+            text-align: center;
+            padding: 1rem 0;
+        }
+
+        .research-list {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem 1.5rem;
+        }
+
+        .research-list li {
+            font-size: 0.85rem;
+            color: var(--color-text-secondary);
+            padding-left: 1rem;
+            position: relative;
+        }
+
+        .research-list li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--color-accent);
+        }
+
+        /* Tag Grid */
+        .tag-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            font-size: 0.75rem;
+            color: var(--color-text-secondary);
+            background: rgba(196, 167, 125, 0.1);
+            border: 1px solid var(--color-accent);
+            border-radius: 2px;
+            letter-spacing: 0.05em;
+        }
+
+        /* Icon Grid - 四个圆形 */
+        .icon-grid {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            padding: 1rem 0;
+        }
+
+        .icon-circle {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 1px solid var(--color-accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(196, 167, 125, 0.05);
+        }
+
+        .icon-text {
+            font-size: 0.75rem;
+            color: var(--color-text-secondary);
+            text-align: center;
+            line-height: 1.3;
+        }
+
+        /* 1:2 图片比例 */
+        .aspect-1-2 {
+            width: 50%;
+            aspect-ratio: 1/2;
+            object-fit: cover;
+            margin: 2rem auto;
+            display: block;
+            border-radius: 4px;
+        }
+
+        /* 1:1 图片比例 */
+        .aspect-1-1 {
+            width: 50%;
+            aspect-ratio: 1/1;
+            object-fit: cover;
+            margin: 2rem auto;
+            display: block;
+            border-radius: 4px;
+        }
+
+        /* 2:1 图片比例 */
+        .aspect-2-1 {
+            width: 100%;
+            aspect-ratio: 2/1;
+            object-fit: cover;
+            margin: 2rem auto;
+            display: block;
+            border-radius: 4px;
+        }
+
+        /* 对页排列 */
+        .two-page-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .two-page-grid img {
+            width: 100%;
+            aspect-ratio: 1/1;
+            object-fit: cover;
+            border-radius: 4px;
+            margin: 0;
+        }
+
+        .research-image {
+            text-align: center;
+        }
+
+        /* 洞察总结 */
+        .insight-summary {
+            max-width: 700px;
+            margin: 3rem auto 0;
+            padding: 2rem;
+            background: rgba(196, 167, 125, 0.05);
+            border-left: 3px solid var(--color-accent);
+        }
+
+        .insight-label {
+            font-family: var(--font-cn);
+            font-size: 0.875rem;
+            color: var(--color-accent);
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .insight-text {
+            font-size: 0.95rem;
+            color: var(--color-text-secondary);
+            line-height: 1.8;
+        }
+
+        /* Concept Content Styles */
+        .concept-content {
+            max-width: 700px;
+            margin: 3rem auto 0;
+        }
+
+        .concept-block {
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .concept-block:last-of-type {
+            border-bottom: none;
+        }
+
+        .concept-title {
+            font-family: var(--font-cn);
+            font-size: 1rem;
+            color: var(--color-text-primary);
+            margin-bottom: 0.25rem;
+            font-weight: 500;
+        }
+
+        .concept-title-en {
+            font-family: var(--font-en);
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            color: var(--color-accent);
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+
+        .concept-main {
+            font-family: var(--font-en);
+            font-size: 1.5rem;
+            color: var(--color-text-primary);
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+        }
+
+        .concept-sub {
+            font-size: 1rem;
+            color: var(--color-text-secondary);
+        }
+
+        /* 流程图 */
+        .flow-chart {
+            text-align: center;
+            padding: 1.5rem 0;
+        }
+
+        .flow-item {
+            display: inline-block;
+            padding: 0.75rem 2rem;
+            font-size: 0.9rem;
+            color: var(--color-text-secondary);
+            background: rgba(196, 167, 125, 0.08);
+            border: 1px solid rgba(196, 167, 125, 0.3);
+            border-radius: 4px;
+            margin: 0.25rem 0;
+        }
+
+        .flow-arrow {
+            font-size: 1.25rem;
+            color: var(--color-accent);
+            margin: 0.25rem 0;
+            line-height: 1;
+        }
+
+        /* 创意总结 */
+        .concept-insight {
+            max-width: 700px;
+            margin: 3rem auto 0;
+            padding: 2rem;
+            background: rgba(196, 167, 125, 0.05);
+            border-left: 3px solid var(--color-accent);
+            text-align: center;
+        }
+
+        .concept-insight .insight-label {
+            font-family: var(--font-cn);
+            font-size: 0.875rem;
+            color: var(--color-accent);
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .concept-insight .insight-main {
+            font-family: var(--font-cn);
+            font-size: 1.1rem;
+            color: var(--color-text-primary);
+            line-height: 1.8;
+        }
+
+        /* 设计亮点卡片 */
+        .highlight-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .highlight-card {
+            background: rgba(36, 36, 36, 0.5);
+            border: 1px solid var(--color-border);
+            border-radius: 4px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .highlight-card:hover {
+            border-color: var(--color-accent);
+            transform: translateY(-2px);
+        }
+
+        .highlight-number {
+            font-family: var(--font-en);
+            font-size: 1.25rem;
+            color: var(--color-accent);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .highlight-card-title {
+            font-family: var(--font-cn);
+            font-size: 1rem;
+            color: var(--color-text-primary);
+            margin-bottom: 0.75rem;
+            font-weight: 500;
+        }
+
+        .highlight-card-text {
+            font-size: 0.85rem;
+            color: var(--color-text-secondary);
+            line-height: 1.7;
+        }
+
+        @media (max-width: 600px) {
+            .highlight-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Story Content Styles */
+        .story-content {
+            max-width: 700px;
+            margin: 3rem auto 0;
+        }
+
+        .story-block {
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .story-block:last-of-type {
+            border-bottom: none;
+        }
+
+        .story-title {
+            font-family: var(--font-cn);
+            font-size: 1rem;
+            color: var(--color-text-primary);
+            margin-bottom: 0.25rem;
+            font-weight: 500;
+        }
+
+        .story-title-en {
+            font-family: var(--font-en);
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            color: var(--color-accent);
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+
+        .story-text {
+            font-size: 0.95rem;
+            color: var(--color-text-secondary);
+            line-height: 1.8;
+        }
+
+        /* 故事核心 */
+        .core-grid {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .core-item {
+            flex: 1;
+            text-align: center;
+            padding: 1.5rem 1rem;
+            background: rgba(196, 167, 125, 0.08);
+            border: 1px solid rgba(196, 167, 125, 0.3);
+            border-radius: 4px;
+        }
+
+        .core-number {
+            font-family: var(--font-en);
+            font-size: 0.75rem;
+            color: var(--color-accent);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .core-text {
+            font-family: var(--font-en);
+            font-size: 1.25rem;
+            color: var(--color-text-primary);
+            letter-spacing: 0.1em;
+        }
+
+        .story-explanation {
+            font-size: 0.95rem;
+            color: var(--color-text-secondary);
+            text-align: center;
+            padding-top: 0.5rem;
+        }
+
+        /* 故事目标列表 */
+        .story-list {
+            list-style: none;
+        }
+
+        .story-list li {
+            font-size: 0.95rem;
+            color: var(--color-text-secondary);
+            padding: 0.75rem 0;
+            padding-left: 2rem;
+            position: relative;
+            border-bottom: 1px solid rgba(196, 167, 125, 0.1);
+        }
+
+        .story-list li:last-child {
+            border-bottom: none;
+        }
+
+        .story-list li::before {
+            content: '✔';
+            position: absolute;
+            left: 0;
+            color: var(--color-accent);
+            font-size: 0.85rem;
+        }
+
+        /* 叙事结构 */
+        .narrative-flow {
+            text-align: center;
+            padding: 1rem 0;
+        }
+
+        .narrative-step {
+            margin: 0.5rem 0;
+        }
+
+        .narrative-label {
+            font-family: var(--font-en);
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            color: var(--color-text-muted);
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+
+        .narrative-text {
+            font-family: var(--font-cn);
+            font-size: 1rem;
+            color: var(--color-text-primary);
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: rgba(196, 167, 125, 0.08);
+            border: 1px solid rgba(196, 167, 125, 0.3);
+            border-radius: 4px;
+        }
+
+        .narrative-arrow {
+            font-size: 1.25rem;
+            color: var(--color-accent);
+            margin: 0.25rem 0;
+            line-height: 1;
+        }
+
+        /* Reflection Content Styles */
+        .reflection-content {
+            max-width: 700px;
+            margin: 3rem auto 0;
+        }
+
+        .reflection-block {
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .reflection-block:last-of-type {
+            border-bottom: none;
+        }
+
+        .reflection-title {
+            font-family: var(--font-cn);
+            font-size: 1rem;
+            color: var(--color-text-primary);
+            margin-bottom: 0.25rem;
+            font-weight: 500;
+        }
+
+        .reflection-title-en {
+            font-family: var(--font-en);
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            color: var(--color-accent);
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+
+        .reflection-text {
+            font-size: 0.95rem;
+            color: var(--color-text-secondary);
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .reflection-text:last-child {
+            margin-bottom: 0;
+        }
+
+        /* 能力成长卡片 */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .skill-card {
+            background: rgba(36, 36, 36, 0.5);
+            border: 1px solid var(--color-border);
+            border-radius: 4px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .skill-card:hover {
+            border-color: var(--color-accent);
+            transform: translateY(-2px);
+        }
+
+        .skill-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: 1px solid var(--color-accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            background: rgba(196, 167, 125, 0.08);
+        }
+
+        .skill-icon-text {
+            font-family: var(--font-en);
+            font-size: 0.9rem;
+            color: var(--color-accent);
+            font-weight: 600;
+        }
+
+        .skill-card-title {
+            font-family: var(--font-cn);
+            font-size: 0.95rem;
+            color: var(--color-text-primary);
+            margin-bottom: 0.25rem;
+            font-weight: 500;
+        }
+
+        .skill-card-subtitle {
+            font-family: var(--font-en);
+            font-size: 0.65rem;
+            letter-spacing: 0.15em;
+            color: var(--color-text-muted);
+            text-transform: uppercase;
+            margin-bottom: 0.75rem;
+        }
+
+        .skill-card-text {
+            font-size: 0.82rem;
+            color: var(--color-text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Final Insight */
+        .final-insight {
+            max-width: 700px;
+            margin: 3rem auto 0;
+            padding: 2rem;
+            background: rgba(196, 167, 125, 0.05);
+            border-left: 3px solid var(--color-accent);
+            text-align: center;
+        }
+
+        .final-insight .insight-label {
+            font-family: var(--font-en);
+            font-size: 0.7rem;
+            letter-spacing: 0.3em;
+            color: var(--color-accent);
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .final-insight .insight-main {
+            font-family: var(--font-cn);
+            font-size: 1.1rem;
+            color: var(--color-text-primary);
+            line-height: 1.8;
+        }
+
+        @media (max-width: 600px) {
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .project-footer {
+            padding: 4rem 2rem;
+            text-align: center;
+            border-top: 1px solid var(--color-border);
+            margin-top: 8rem;
+        }
+
+        .footer-text {
+            font-size: 0.875rem;
+            color: var(--color-text-muted);
+            margin-bottom: 2rem;
+        }
+
+        .back-link {
+            font-family: var(--font-en);
+            font-size: 0.875rem;
+            letter-spacing: 0.15em;
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            padding-bottom: 0.25rem;
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: var(--color-accent);
+            border-color: var(--color-accent);
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 1rem 1.5rem;
+            }
+
+            .nav-right {
+                gap: 1rem;
+            }
+
+            .project-header {
+                padding: 6rem 1rem 3rem;
+            }
+
+            .project-title {
+                font-size: 1.75rem;
+            }
+
+            .project-meta {
+                gap: 1.5rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .scale-in {
+            opacity: 0;
+            transform: scale(0.95);
+            transition: opacity 1s cubic-bezier(0.22, 1, 0.36, 1), transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .scale-in.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-left">
+            <span class="nav-brand">PORTFOLIO 2026</span>
+            <span class="nav-author">LIU YIXUAN</span>
+        </div>
+        <div class="nav-right">
+            <a href="index.html#home" class="nav-link">HOME</a>
+            <a href="index.html#contents" class="nav-link">CONTENTS</a>
+            <a href="index.html#about" class="nav-link">ABOUT</a>
+            <a href="index.html#contact" class="nav-link">CONTACT</a>
+        </div>
+    </nav>
+
+    <header class="project-header fade-in">
+        <div class="header-image scale-in">
+            <img src="images/mumu-cover.jpg" alt="MUMU的美味之旅封面">
+        </div>
+        <div class="project-title-container">
+            <span class="project-number">AI绘本与插漫画</span>
+            <h1 class="project-title">MUMU的美味之旅</h1>
+            <p class="project-subtitle">为MUWANTU公司IP MUMU设计的儿童绘本</p>
+            <div class="project-meta">
+                <div class="meta-item">
+                    <span class="meta-label">Client</span>
+                    <span class="meta-value">MUWANTU</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Type</span>
+                    <span class="meta-value">儿童绘本设计</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Tools</span>
+                    <span class="meta-value">AI辅助 + 手绘</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="project-section">
+        <div class="section-container">
+            <div class="section-header fade-in">
+                <span class="section-number">01</span>
+                <h2 class="section-title">项目概述</h2>
+                <p class="section-title-cn">OVERVIEW</p>
+            </div>
+            <div class="overview-content fade-in">
+                <div class="overview-block">
+                    <h3 class="overview-label">项目名称</h3>
+                    <p class="overview-value">《MUMU的美味之旅》</p>
+                </div>
+                <div class="overview-block">
+                    <h3 class="overview-label">项目背景</h3>
+                    <p class="overview-text">受木顽兔（MUWANTU）品牌委托，以品牌IP"MUMU"和伙伴"卜卜"为核心角色，结合儿童厨房玩具系列，创作一本兼具趣味性与品牌传播价值的儿童绘本。</p>
+                </div>
+                <div class="overview-block">
+                    <h3 class="overview-label">项目目标</h3>
+                    <ul class="overview-list">
+                        <li>提升品牌IP亲和力</li>
+                        <li>增强产品互动体验</li>
+                        <li>构建IP故事世界观</li>
+                        <li>建立儿童情感连接</li>
+                    </ul>
+                </div>
+                <div class="overview-block">
+                    <h3 class="overview-label">我的职责</h3>
+                    <ul class="overview-list">
+                        <li>故事策划</li>
+                        <li>绘本脚本</li>
+                        <li>角色设计</li>
+                        <li>AI视觉生成</li>
+                        <li>手绘优化</li>
+                        <li>版式设计</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="project-section">
+        <div class="section-container">
+            <div class="section-header fade-in">
+                <span class="section-number">02</span>
+                <h2 class="section-title">品牌/IP研究</h2>
+                <p class="section-title-cn">RESEARCH</p>
+            </div>
+
+            <!-- 品牌研究 -->
+            <div class="research-content fade-in">
+                <div class="research-part">
+                    <h3 class="research-part-title">BRAND RESEARCH</h3>
+                    <h4 class="research-part-subtitle">一、品牌研究</h4>
+                    <p class="research-brand-name">MUWANTU 木顽兔</p>
+
+                    <div class="research-block">
+                        <h5 class="research-label">1、品牌定位</h5>
+                        <p class="research-text">MUWANTU（木顽兔）是一家专注于儿童益智玩具与成长陪伴产品的原创品牌，以木制玩具、儿童厨房玩具及角色IP开发为核心，通过游戏化体验激发儿童创造力、动手能力与生活认知，让玩具成为陪伴儿童成长的重要媒介。</p>
+                    </div>
+
+                    <div class="research-block">
+                        <h5 class="research-label">2、品牌关键词</h5>
+                        <div class="tag-grid">
+                            <span class="tag">原创IP</span>
+                            <span class="tag">儿童成长</span>
+                            <span class="tag">角色陪伴</span>
+                            <span class="tag">厨房启蒙</span>
+                            <span class="tag">益智互动</span>
+                            <span class="tag">生活教育</span>
+                        </div>
+                    </div>
+
+                    <div class="research-block">
+                        <h5 class="research-label">3、品牌核心价值</h5>
+                        <p class="research-quote">让孩子在游戏中学习，在陪伴中成长。</p>
+                        <p class="research-text">品牌不仅关注产品功能，更强调儿童在游戏过程中的探索体验、情感陪伴与生活教育，希望通过IP角色建立孩子与品牌之间长期的情感连接。</p>
+                    </div>
+
+                    <div class="research-block">
+                        <h5 class="research-label">4、产品特点</h5>
+                        <ul class="research-list">
+                            <li>儿童厨房玩具</li>
+                            <li>木制益智玩具</li>
+                            <li>情景模拟游戏</li>
+                            <li>安全环保材质</li>
+                            <li>家庭亲子互动</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- IP研究 -->
+                <div class="research-part">
+                    <h3 class="research-part-title">IP RESEARCH</h3>
+                    <h4 class="research-part-subtitle">二、IP研究</h4>
+
+                    <div class="ip-section">
+                        <p class="ip-name">MUMU</p>
+                        <div class="research-block">
+                            <h5 class="research-label">角色定位</h5>
+                            <p class="research-text">MUMU是MUWANTU品牌的核心IP形象，以温暖、乐观、勇敢、富有好奇心的小兔子形象出现，是连接品牌与儿童用户的重要情感载体。作为故事中的主角，MUMU不仅承担品牌传播角色，更通过不断探索、体验与分享，引导儿童建立积极的生活认知与探索精神。</p>
+                        </div>
+                    </div>
+
+                    <div class="ip-section">
+                        <p class="ip-name">卜卜（BUBU）</p>
+                        <div class="research-block">
+                            <h5 class="research-label">角色定位</h5>
+                            <p class="research-text">卜卜是MUMU最亲密的小伙伴，活泼、可爱、乐于陪伴，在故事中承担互动、鼓励与情绪回应的角色，与MUMU共同完成成长冒险，使整体故事更加具有趣味性与亲和力。</p>
+                        </div>
+                    </div>
+
+                    <div class="research-block">
+                        <h5 class="research-label">IP视觉特征</h5>
+                        <div class="icon-grid">
+                            <div class="icon-circle">
+                                <span class="icon-text">圆润造型</span>
+                            </div>
+                            <div class="icon-circle">
+                                <span class="icon-text">高识别度</span>
+                            </div>
+                            <div class="icon-circle">
+                                <span class="icon-text">低龄友好</span>
+                            </div>
+                            <div class="icon-circle">
+                                <span class="icon-text">高情绪表达</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="research-block">
+                        <h5 class="research-label">IP性格关键词</h5>
+                        <div class="tag-grid">
+                            <span class="tag">温暖</span>
+                            <span class="tag">好奇</span>
+                            <span class="tag">乐观</span>
+                            <span class="tag">勇敢</span>
+                            <span class="tag">陪伴</span>
+                            <span class="tag">分享</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 图片 -->
+                <div class="research-image scale-in">
+                    <img src="images/mumu-research-1.jpg" alt="品牌/IP研究" class="aspect-1-2">
+                </div>
+
+                <!-- 洞察总结 -->
+                <div class="insight-summary fade-in">
+                    <h5 class="insight-label">洞察总结</h5>
+                    <p class="insight-text">基于品牌"陪伴成长"的核心理念，本项目以 MUMU 与卜卜为叙事主体，将厨房玩具转化为故事中的互动道具，通过"角色陪伴 + 情境体验"的方式，让儿童在阅读中自然理解产品功能，并建立对品牌IP的情感认同。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="project-section">
+        <div class="section-container">
+            <div class="section-header fade-in">
+                <span class="section-number">03</span>
+                <h2 class="section-title">创意策略</h2>
+                <p class="section-title-cn">CONCEPT</p>
+            </div>
+
+            <div class="concept-content fade-in">
+                <!-- 核心创意 -->
+                <div class="concept-block">
+                    <h4 class="concept-title">核心创意</h4>
+                    <p class="concept-title-en">Creative Concept</p>
+                    <p class="concept-main">让玩具成为故事的一部分</p>
+                    <p class="concept-sub">让故事成为孩子探索世界的开始。</p>
+                </div>
+
+                <!-- 设计逻辑 -->
+                <div class="concept-block">
+                    <h4 class="concept-title">设计逻辑</h4>
+                    <p class="concept-title-en">Design Logic</p>
+                    <div class="flow-chart">
+                        <div class="flow-item">品牌理念</div>
+                        <div class="flow-arrow">↓</div>
+                        <div class="flow-item">原创IP（MUMU）</div>
+                        <div class="flow-arrow">↓</div>
+                        <div class="flow-item">厨房玩具</div>
+                        <div class="flow-arrow">↓</div>
+                        <div class="flow-item">故事冒险</div>
+                        <div class="flow-arrow">↓</div>
+                        <div class="flow-item">角色互动</div>
+                        <div class="flow-arrow">↓</div>
+                        <div class="flow-item">亲子共读</div>
+                        <div class="flow-arrow">↓</div>
+                        <div class="flow-item">产品体验</div>
+                        <div class="flow-arrow">↓</div>
+                        <div class="flow-item">品牌记忆</div>
+                    </div>
+                </div>
+
+                <!-- 创意关键词 -->
+                <div class="concept-block">
+                    <h4 class="concept-title">创意关键词</h4>
+                    <p class="concept-title-en">Keywords</p>
+                    <div class="tag-grid">
+                        <span class="tag">故事化</span>
+                        <span class="tag">角色扮演</span>
+                        <span class="tag">厨房启蒙</span>
+                        <span class="tag">探索</span>
+                        <span class="tag">陪伴</span>
+                        <span class="tag">成长</span>
+                    </div>
+                </div>
+
+                <!-- 设计亮点 -->
+                <div class="concept-block">
+                    <h4 class="concept-title">设计亮点</h4>
+                    <p class="concept-title-en">Design Highlights</p>
+                    <div class="highlight-grid">
+                        <div class="highlight-card">
+                            <span class="highlight-number">①</span>
+                            <h5 class="highlight-card-title">IP驱动叙事</h5>
+                            <p class="highlight-card-text">以MUMU与卜卜作为故事主角，通过角色行为推动情节发展，使品牌IP真正参与故事，而非作为单纯视觉符号出现。</p>
+                        </div>
+                        <div class="highlight-card">
+                            <span class="highlight-number">②</span>
+                            <h5 class="highlight-card-title">产品融入剧情</h5>
+                            <p class="highlight-card-text">将厨房玩具设计为故事中的关键道具，例如电饭煲、餐具、食材等，不刻意展示产品，而是在故事推进中自然出现，使儿童在阅读过程中主动理解产品玩法。</p>
+                        </div>
+                        <div class="highlight-card">
+                            <span class="highlight-number">③</span>
+                            <h5 class="highlight-card-title">游戏化阅读体验</h5>
+                            <p class="highlight-card-text">通过清洗食材、制作料理、分享美食、分工合作等互动情节，引导儿童产生代入感，使阅读过程更具参与性与趣味性。</p>
+                        </div>
+                        <div class="highlight-card">
+                            <span class="highlight-number">④</span>
+                            <h5 class="highlight-card-title">AI × 手绘融合</h5>
+                            <p class="highlight-card-text">采用AI辅助生成场景与氛围，结合手绘进行角色优化与细节调整，在保证创作效率的同时，使整体画面更加温暖、生动，符合儿童绘本的视觉特点。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 创意总结 -->
+                <div class="concept-insight fade-in">
+                    <h5 class="insight-label">创意总结</h5>
+                    <p class="insight-main">相比于向孩子介绍一件玩具，<br>我更希望陪伴他们完成一次关于美食、探索与分享的成长旅程。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="project-section">
+        <div class="section-container">
+            <div class="section-header fade-in">
+                <span class="section-number">04</span>
+                <h2 class="section-title">故事构建</h2>
+                <p class="section-title-cn">STORY DESIGN</p>
+            </div>
+
+            <div class="story-content fade-in">
+                <!-- 故事主题 -->
+                <div class="story-block">
+                    <h4 class="story-title">故事主题</h4>
+                    <p class="story-title-en">Story Theme</p>
+                    <p class="story-text">以一次制作午餐的经历为线索，将厨房玩具转化为故事中的互动媒介，让孩子在阅读过程中学习生活技能、体验合作乐趣，并感受分享带来的幸福。</p>
+                </div>
+
+                <!-- 故事核心 -->
+                <div class="story-block">
+                    <h4 class="story-title">故事核心</h4>
+                    <p class="story-title-en">Story Core</p>
+                    <div class="core-grid">
+                        <div class="core-item">
+                            <span class="core-number">01</span>
+                            <span class="core-text">探索</span>
+                        </div>
+                        <div class="core-item">
+                            <span class="core-number">02</span>
+                            <span class="core-text">合作</span>
+                        </div>
+                        <div class="core-item">
+                            <span class="core-number">03</span>
+                            <span class="core-text">分享</span>
+                        </div>
+                    </div>
+                    <p class="story-explanation">让厨房不仅成为烹饪空间，更成为孩子认识生活、体验成长的故事舞台。</p>
+                </div>
+
+                <!-- 故事目标 -->
+                <div class="story-block">
+                    <h4 class="story-title">故事目标</h4>
+                    <p class="story-title-en">Story Objective</p>
+                    <ul class="story-list">
+                        <li>学习简单生活技能</li>
+                        <li>培养合作意识</li>
+                        <li>建立分享精神</li>
+                    </ul>
+                </div>
+
+                <!-- 叙事结构 -->
+                <div class="story-block">
+                    <h4 class="story-title">叙事结构</h4>
+                    <p class="story-title-en">Narrative Structure</p>
+                    <div class="narrative-flow">
+                        <div class="narrative-step">
+                            <span class="narrative-label">Beginning</span>
+                            <span class="narrative-text">相约做饭</span>
+                        </div>
+                        <div class="narrative-arrow">↓</div>
+                        <div class="narrative-step">
+                            <span class="narrative-label">Development</span>
+                            <span class="narrative-text">一起准备食材</span>
+                        </div>
+                        <div class="narrative-arrow">↓</div>
+                        <div class="narrative-step">
+                            <span class="narrative-label">Progress</span>
+                            <span class="narrative-text">制作料理</span>
+                        </div>
+                        <div class="narrative-arrow">↓</div>
+                        <div class="narrative-step">
+                            <span class="narrative-label">Climax</span>
+                            <span class="narrative-text">完成午餐</span>
+                        </div>
+                        <div class="narrative-arrow">↓</div>
+                        <div class="narrative-step">
+                            <span class="narrative-label">Ending</span>
+                            <span class="narrative-text">分享美食</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="project-section">
+        <div class="section-container">
+            <div class="section-header fade-in">
+                <span class="section-number">05</span>
+                <h2 class="section-title">绘本展示</h2>
+                <p class="section-title-cn">BOOK PREVIEW</p>
+            </div>
+
+            <div class="book-preview-content fade-in">
+                <!-- 已有封面图 -->
+                <img src="images/mumu-preview-1.jpg" alt="绘本封面" class="aspect-1-1">
+
+                <!-- 1. 2:1比例图片 -->
+                <img src="images/mumu-preview-2.jpg" alt="绘本内页1" class="aspect-2-1">
+
+                <!-- 2-3. 两张1:1对页排列 -->
+                <div class="two-page-grid">
+                    <img src="images/mumu-preview-3.jpg" alt="绘本内页2" class="aspect-1-1">
+                    <img src="images/mumu-preview-4.jpg" alt="绘本内页3" class="aspect-1-1">
+                </div>
+
+                <!-- 4. 2:1比例图片 -->
+                <img src="images/mumu-preview-5.jpg" alt="绘本内页4" class="aspect-2-1">
+
+                <!-- 5-6. 两张1:1对页排列 -->
+                <div class="two-page-grid">
+                    <img src="images/mumu-preview-6.jpg" alt="绘本内页5" class="aspect-1-1">
+                    <img src="images/mumu-preview-7.jpg" alt="绘本内页6" class="aspect-1-1">
+                </div>
+
+                <!-- 7-8. 两张2:1比例图片 -->
+                <img src="images/mumu-preview-8.jpg" alt="绘本内页7" class="aspect-2-1">
+                <img src="images/mumu-preview-9.jpg" alt="绘本内页8" class="aspect-2-1">
+
+                <!-- 9-10. 两张1:1对页排列 -->
+                <div class="two-page-grid">
+                    <img src="images/mumu-preview-10.jpg" alt="绘本内页9" class="aspect-1-1">
+                    <img src="images/mumu-preview-11.jpg" alt="绘本内页10" class="aspect-1-1">
+                </div>
+
+                <!-- 2:1比例图片 -->
+                <img src="images/mumu-preview-13.jpg" alt="绘本内页11" class="aspect-2-1">
+
+                <!-- 11. 封底图片 -->
+                <img src="images/mumu-preview-12.jpg" alt="绘本封底" class="aspect-1-1">
+            </div>
+        </div>
+    </section>
+
+    <section class="project-section">
+        <div class="section-container">
+            <div class="section-header fade-in">
+                <span class="section-number">06</span>
+                <h2 class="section-title">项目总结</h2>
+                <p class="section-title-cn">REFLECTION</p>
+            </div>
+
+            <div class="reflection-content fade-in">
+                <!-- 项目成果 -->
+                <div class="reflection-block">
+                    <h4 class="reflection-title">项目成果</h4>
+                    <p class="reflection-title-en">Project Outcome</p>
+                    <p class="reflection-text">本项目以MUWANTU品牌IP MUMU 与伙伴 卜卜 为核心，围绕儿童厨房玩具构建了一套完整的品牌绘本内容。从品牌研究、故事策划、叙事设计到AI辅助视觉创作，最终完成了一本兼具品牌传播与儿童阅读体验的原创绘本，实现了品牌IP、产品体验与故事内容之间的有机融合。</p>
+                </div>
+
+                <!-- 设计收获 -->
+                <div class="reflection-block">
+                    <h4 class="reflection-title">设计收获</h4>
+                    <p class="reflection-title-en">Design Reflection</p>
+                    <p class="reflection-text">在本项目中，我更加深入地理解了商业绘本不仅是插画创作，更是品牌内容设计。儿童绘本需要在趣味性、教育性与品牌表达之间取得平衡，因此整个创作过程中，我始终围绕品牌理念、目标用户和产品特点展开设计，而不是单纯追求画面的表现力。</p>
+                    <p class="reflection-text">同时，我尝试将 AI生成 与 手绘创作 相结合，通过AI快速完成场景氛围探索，再结合手绘对角色、细节与画面节奏进行优化，使整体视觉既保持创作效率，又保留了儿童绘本应有的温暖与亲和力。</p>
+                </div>
+
+                <!-- 能力成长 -->
+                <div class="reflection-block">
+                    <h4 class="reflection-title">能力成长</h4>
+                    <p class="reflection-title-en">Skills Gained</p>
+                    <div class="skills-grid">
+                        <div class="skill-card">
+                            <div class="skill-icon">
+                                <span class="skill-icon-text">B</span>
+                            </div>
+                            <h5 class="skill-card-title">品牌理解</h5>
+                            <p class="skill-card-subtitle">Brand Thinking</p>
+                            <p class="skill-card-text">从品牌定位出发，思考IP内容如何服务于品牌传播，而不仅是视觉表现。</p>
+                        </div>
+                        <div class="skill-card">
+                            <div class="skill-icon">
+                                <span class="skill-icon-text">N</span>
+                            </div>
+                            <h5 class="skill-card-title">叙事设计</h5>
+                            <p class="skill-card-subtitle">Narrative Design</p>
+                            <p class="skill-card-text">围绕儿童阅读习惯构建故事节奏，使产品自然融入剧情，提升阅读沉浸感。</p>
+                        </div>
+                        <div class="skill-card">
+                            <div class="skill-icon">
+                                <span class="skill-icon-text">AI</span>
+                            </div>
+                            <h5 class="skill-card-title">AIGC创作</h5>
+                            <p class="skill-card-subtitle">AI-assisted Creation</p>
+                            <p class="skill-card-text">建立了"故事策划—AI生成—手绘优化—版式设计"的创作流程，提高了视觉开发效率。</p>
+                        </div>
+                        <div class="skill-card">
+                            <div class="skill-icon">
+                                <span class="skill-icon-text">C</span>
+                            </div>
+                            <h5 class="skill-card-title">商业落地</h5>
+                            <p class="skill-card-subtitle">Commercial Design</p>
+                            <p class="skill-card-text">理解品牌IP在绘本、产品与儿童互动体验中的延展方式，为后续品牌内容设计积累了实践经验。</p>
+                        </div>
+                    </div>
+                    <img src="images/mumu-final.jpg" alt="项目成果" class="aspect-1-1">
+                </div>
+
+                <!-- Final Insight -->
+                <div class="final-insight fade-in">
+                    <h5 class="insight-label">Final Insight</h5>
+                    <p class="insight-main">一本优秀的儿童绘本，不只是讲述一个故事，更是在孩子心中种下一次探索世界的勇气。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="project-footer">
+        <p class="footer-text">《MUMU的美味之旅》- 刘奕轩作品集</p>
+        <a href="index.html#contents" class="back-link">BACK TO PORTFOLIO</a>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.body.classList.add('js-loaded');
+
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, observerOptions);
+
+            const animatedElements = document.querySelectorAll('.fade-in, .scale-in');
+            animatedElements.forEach(function(el) {
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>

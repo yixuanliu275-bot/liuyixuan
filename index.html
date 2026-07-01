@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PORTFOLIO 2026 | 刘奕轩</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600&family=Playfair+Display:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <canvas id="ripple-canvas"></canvas>
+    <nav class="nav">
+        <div class="nav-logo">PORTFOLIO 2026</div>
+        <div class="nav-menu">
+            <a href="#home">HOME</a>
+            <a href="#contents">CONTENTS</a>
+            <a href="#about">ABOUT</a>
+            <a href="#contact">CONTACT</a>
+        </div>
+    </nav>
+
+    <section id="home" class="section section-home">
+        <canvas id="diffusion-canvas"></canvas>
+        <div class="home-content">
+            <h1 class="home-title">AI VISUAL STORYTELLING</h1>
+            <p class="home-subtitle">AIGC × Brand Narrative × IP Design</p>
+            <div class="home-author">
+                <p class="author-name">刘奕轩</p>
+                <p class="author-desc">数字媒体艺术创作者</p>
+            </div>
+        </div>
+        <div class="scroll-hint">
+            <span>SCROLL</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <section id="contents" class="section section-contents">
+        <div class="section-header fade-in">
+            <h2 class="section-title-en">CONTENTS</h2>
+            <p class="section-title-cn">目录</p>
+        </div>
+        <div class="contents-list">
+            <a href="#ai-video" class="content-item fade-in fade-in-delay-1">
+                <span class="content-number">01</span>
+                <div class="content-text">
+                    <h3 class="content-title-en">AI VIDEO PROJECTS</h3>
+                    <p class="content-title-cn">AI影视与品牌叙事</p>
+                </div>
+            </a>
+            <a href="#brand-strategy" class="content-item fade-in fade-in-delay-2">
+                <span class="content-number">02</span>
+                <div class="content-text">
+                    <h3 class="content-title-en">BRAND STRATEGY</h3>
+                    <p class="content-title-cn">品牌策略与营销策划</p>
+                </div>
+            </a>
+            <a href="#brand-ip" class="content-item fade-in fade-in-delay-3">
+                <span class="content-number">03</span>
+                <div class="content-text">
+                    <h3 class="content-title-en">BRAND IP DESIGN</h3>
+                    <p class="content-title-cn">品牌IP与角色设计</p>
+                </div>
+            </a>
+            <a href="#visual-storytelling" class="content-item fade-in fade-in-delay-4">
+                <span class="content-number">04</span>
+                <div class="content-text">
+                    <h3 class="content-title-en">VISUAL STORYTELLING</h3>
+                    <p class="content-title-cn">AI绘本与插漫画</p>
+                </div>
+            </a>
+            <a href="#ux-ui" class="content-item fade-in fade-in-delay-1">
+                <span class="content-number">05</span>
+                <div class="content-text">
+                    <h3 class="content-title-en">UX / UI DESIGN</h3>
+                    <p class="content-title-cn">社会创新设计</p>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <section id="ai-video" class="section section-project">
+        <div class="section-header fade-in">
+            <span class="section-number">01</span>
+            <h2 class="section-title-en">AI VIDEO PROJECTS</h2>
+            <p class="section-title-cn">AI影视与品牌叙事</p>
+        </div>
+        
+        <div class="project-list">
+            <article class="project-item fade-in-left" data-video-type="bilibili" data-video-id="BV1B7jD6DEQf" data-video-start="81">
+                <div class="project-visual video-trigger" data-video-bvid="BV1B7jD6DEQf" data-video-time="81">
+                    <img src="images/west-lake-epic.jpg" alt="西湖千年精神史诗封面" class="project-image">
+                    <div class="play-overlay">
+                        <div class="play-icon">▶</div>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <a href="project-westlake.html" class="project-link">
+                        <h3 class="project-title">《西湖千年精神史诗》</h3>
+                    </a>
+                    <p class="project-type">AI人文纪录片</p>
+                    <p class="project-desc">以AI技术重构西湖千年文化记忆，探索人文精神与数字艺术的融合表达。</p>
+                </div>
+            </article>
+
+            <article class="project-item fade-in-right" data-video-type="bilibili" data-video-id="BV1JTjZ6rEQb" data-video-start="0">
+                <div class="project-visual">
+                    <img src="images/lianzheng-zhiben.jpg" alt="廉政之本封面" class="project-image">
+                    <div class="play-overlay">
+                        <div class="play-icon">▶</div>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <a href="project-lianzheng.html" class="project-link">
+                        <h3 class="project-title">《廉政之本》</h3>
+                    </a>
+                    <p class="project-type">AI历史真人短片</p>
+                    <p class="project-desc">运用AI技术还原历史场景，讲述廉政文化的深层内涵。</p>
+                </div>
+            </article>
+
+            <article class="project-item fade-in-left" data-video-type="bilibili" data-video-id="BV1UP746KE57" data-video-start="1.6">
+                <div class="project-visual">
+                    <img src="images/xiaoxiaodi-liuxia.jpg" alt="小小地留下封面" class="project-image">
+                    <div class="play-overlay">
+                        <div class="play-icon">▶</div>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <a href="project-xiaoxiao.html" class="project-link">
+                        <h3 class="project-title">《小小地留下》</h3>
+                    </a>
+                    <p class="project-type">泡泡玛特Molly二十周年品牌微电影</p>
+                    <p class="project-desc">为泡泡玛特Molly二十周年创作的品牌叙事影像，探索潮玩IP的情感表达。</p>
+                </div>
+            </article>
+
+            <article class="project-item fade-in-right" data-video-type="bilibili" data-video-id="BV1AL746fE5J" data-video-start="16.0">
+                <div class="project-visual">
+                    <img src="images/huachu-wodeshijie.jpg" alt="画出我的世界封面" class="project-image">
+                    <div class="play-overlay">
+                        <div class="play-icon">▶</div>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <a href="project-molly.html" class="project-link">
+                        <h3 class="project-title">《画出我的世界》</h3>
+                    </a>
+                    <p class="project-type">泡泡玛特Molly二十周年动画广告</p>
+                    <p class="project-desc">以动画形式呈现Molly的创意世界，传递品牌精神。</p>
+                </div>
+            </article>
+
+            <article class="project-item fade-in-left" data-video-type="bilibili" data-video-id="BV1a2Tc6LEo8" data-video-time="0.2">
+                <div class="project-visual">
+                    <img src="images/zhangdan-fengbao.jpg" alt="账单风暴封面" class="project-image">
+                    <div class="play-overlay">
+                        <div class="play-icon">▶</div>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <h3 class="project-title"><a href="project-zhangdan.html">《账单风暴》</a></h3>
+                    <p class="project-type">太平洋健康险IP动画广告</p>
+                    <p class="project-desc">为太平洋健康险定制的IP动画广告，以创意叙事传递品牌价值。</p>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <section id="brand-strategy" class="section section-project">
+        <div class="section-header fade-in">
+            <span class="section-number">02</span>
+            <h2 class="section-title-en">BRAND STRATEGY</h2>
+            <p class="section-title-cn">品牌策略与营销策划</p>
+        </div>
+        
+        <div class="project-single scale-in">
+            <a href="project-wahaha.html" class="project-visual-large-link">
+                <div class="project-visual-large">
+                    <img src="images/wahaha-adcover.jpg" alt="娃哈哈AD钙奶策划案封面" class="project-image-large">
+                </div>
+            </a>
+            <div class="project-detail">
+                <a href="project-wahaha.html" class="project-link">
+                    <h3 class="project-title">《钙不钙世的，都是小孩》</h3>
+                </a>
+                <p class="project-type">娃哈哈AD钙奶30周年整合营销策划</p>
+                <div class="project-tags">
+                    <span>品牌分析</span>
+                    <span>市场分析</span>
+                    <span>用户洞察</span>
+                    <span>创意策略</span>
+                    <span>快闪店设计</span>
+                    <span>传播规划</span>
+                    <span>视觉系统设计</span>
+                </div>
+                <p class="project-desc">为娃哈哈AD钙奶三十周年品牌焕新提供整合营销策略，从品牌定位到视觉系统，从创意策略到传播规划，构建完整的品牌叙事体系。</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="brand-ip" class="section section-project">
+        <div class="section-header fade-in">
+            <span class="section-number">03</span>
+            <h2 class="section-title-en">BRAND IP DESIGN</h2>
+            <p class="section-title-cn">品牌IP与角色设计</p>
+        </div>
+        
+        <div class="project-single scale-in">
+            <a href="project-dreamvale.html" class="project-visual-large-link">
+                <div class="project-visual-large">
+                    <img src="images/dreamvale-cover.jpg" alt="Dreamvale梦境谷" class="project-image-large">
+                </div>
+            </a>
+            <div class="project-detail">
+                <a href="project-dreamvale.html" class="project-link">
+                    <h3 class="project-title">品牌IP与角色设计</h3>
+                </a>
+                <p class="project-desc">原创IP设计作品展示，角色设定、世界观设定、三视图、3D建模、色彩系统、潮玩衍生设计。</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="visual-storytelling" class="section section-project">
+        <div class="section-header fade-in">
+            <span class="section-number">04</span>
+            <h2 class="section-title-en">VISUAL STORYTELLING</h2>
+            <p class="section-title-cn">AI绘本与插漫画</p>
+        </div>
+        
+        <div class="project-list">
+            <article class="project-item fade-in-left">
+                <a href="project-mumu.html" class="project-link">
+                    <div class="project-visual project-visual-square">
+                        <img src="images/mumu-cover.jpg" alt="MUMU的美味之旅" class="project-image">
+                    </div>
+                </a>
+                <div class="project-info">
+                    <a href="project-mumu.html" class="project-title-link">
+                        <h3 class="project-title">《MUMU的美味之旅》</h3>
+                    </a>
+                    <p class="project-type">为MUWANTU公司IP MUMU设计的儿童绘本</p>
+                    <p class="project-desc">以MUMU为主角的儿童绘本创作，讲述关于美食与成长的温暖故事。</p>
+                </div>
+            </article>
+
+            <article class="project-item fade-in-right">
+                <a href="project-xingshi.html" class="project-link">
+                    <div class="project-visual project-visual-a3">
+                        <img src="images/xingshi-cover.jpg" alt="醒狮游灯录" class="project-image">
+                    </div>
+                </a>
+                <div class="project-info">
+                    <a href="project-xingshi.html" class="project-title-link">
+                        <h3 class="project-title">《醒狮游灯录》</h3>
+                    </a>
+                    <p class="project-type">非遗主题插漫画</p>
+                    <p class="project-desc">以醒狮文化为灵感的插画创作，探索传统非遗与现代视觉叙事的融合。</p>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <section id="ux-ui" class="section section-project">
+        <div class="section-header fade-in">
+            <span class="section-number">05</span>
+            <h2 class="section-title-en">UX / UI DESIGN</h2>
+            <p class="section-title-cn">社会创新设计</p>
+        </div>
+        
+        <div class="project-single scale-in">
+            <a href="project-suiyu.html" class="project-visual-large-link">
+                <div class="project-visual-large project-visual-large-square">
+                    <img src="images/suiyu-cover.jpg" alt="岁语APP封面" class="project-image-large">
+                </div>
+            </a>
+            <div class="project-detail">
+                <a href="project-suiyu.html" class="project-link">
+                    <h3 class="project-title">《岁语》APP设计</h3>
+                </a>
+                <p class="project-type">代际经验共享平台</p>
+                <div class="project-tags">
+                    <span>用户研究</span>
+                    <span>用户画像</span>
+                    <span>信息架构</span>
+                    <span>交互流程</span>
+                    <span>界面设计</span>
+                    <span>高保真原型</span>
+                </div>
+                <p class="project-desc">连接不同世代人群的经验分享平台，让智慧与故事在代际间流动，创造温暖的社会价值。</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="section section-about">
+        <div class="section-header fade-in">
+            <h2 class="section-title-en">ABOUT ME</h2>
+            <p class="section-title-cn">关于我</p>
+        </div>
+        <div class="about-content fade-in">
+            <div class="about-text fade-in-left">
+                <p class="about-name">刘奕轩</p>
+                <p class="about-major">
+                    <span class="major-time">2023.09-2027.06</span><br>
+                    <span class="major-school">浙江工业大学 数字媒体艺术专业</span>
+                </p>
+                <p class="about-focus">聚焦AIGC影视创作、品牌内容设计、IP角色设计与视觉叙事。</p>
+                <p class="about-philosophy">致力于探索人工智能技术与艺术表达的融合方式，让创意内容兼具文化价值与商业价值。</p>
+            </div>
+            <div class="about-skills fade-in-right">
+                <div class="skill-category">
+                    <h4>创作方向</h4>
+                    <ul>
+                        <li>AIGC影视创作</li>
+                        <li>品牌内容设计</li>
+                        <li>IP角色设计</li>
+                        <li>视觉叙事设计</li>
+                        <li>品牌营销策划</li>
+                        <li>UI/UX设计</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section section-contact">
+        <div class="section-header fade-in">
+            <h2 class="section-title-en">CONTACT</h2>
+            <p class="section-title-cn">联系我</p>
+        </div>
+        <div class="contact-content fade-in">
+            <div class="contact-item fade-in-left">
+                <span class="contact-label">EMAIL</span>
+                <a href="mailto:liuyixuan@zjut.edu.cn" class="contact-value">liuyixuan@zjut.edu.cn</a>
+            </div>
+            <div class="contact-item fade-in-right">
+                <span class="contact-label">PHONE</span>
+                <a href="tel:19558243787" class="contact-value">19558243787</a>
+            </div>
+        </div>
+        <footer class="footer">
+            <p>© 2026 刘奕轩 | PORTFOLIO 2026</p>
+            <p class="footer-position">AI Visual Storytelling Designer</p>
+        </footer>
+    </section>
+
+    <div id="video-modal" class="video-modal">
+        <div class="video-modal-overlay"></div>
+        <div class="video-modal-content">
+            <button class="video-modal-close">
+                <span class="close-icon">×</span>
+            </button>
+            <div class="video-modal-header">
+                <h3 id="video-modal-title" class="video-modal-title">视频标题</h3>
+                <p id="video-modal-desc" class="video-modal-desc">视频描述</p>
+            </div>
+            <div class="video-modal-body">
+                <div id="video-player-container" class="video-player-container">
+                    <div class="video-loading">
+                        <div class="loading-spinner"></div>
+                        <p>加载中...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="diffusion.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

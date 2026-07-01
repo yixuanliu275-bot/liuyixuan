@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>钙不钙世的，都是小孩 - 刘奕轩作品集</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Noto+Serif+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --color-bg-primary: #f8f7f5;
+            --color-bg-secondary: #ffffff;
+            --color-text-primary: #2c2c2c;
+            --color-text-secondary: #5a5a5a;
+            --color-text-muted: #8a8a8a;
+            --color-accent: #8ba888;
+            --color-border: #e8e6e3;
+            --color-card-bg: #ffffff;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Noto Serif SC', serif;
+            background-color: var(--color-bg-primary);
+            color: var(--color-text-primary);
+            line-height: 1.8;
+            overflow-x: hidden;
+            opacity: 0;
+            transition: opacity 1s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        body.js-loaded {
+            opacity: 1;
+        }
+
+        ::selection {
+            background: var(--color-accent);
+            color: #fff;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 3rem;
+            background: rgba(248, 247, 245, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--color-border);
+            transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .nav-brand {
+            font-family: 'Playfair Display', serif;
+            font-size: 0.875rem;
+            letter-spacing: 0.2em;
+            color: var(--color-text-primary);
+        }
+
+        .nav-author {
+            font-size: 0.75rem;
+            color: var(--color-text-muted);
+        }
+
+        .nav-right {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            transition: color 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .nav-link:hover {
+            color: var(--color-accent);
+        }
+
+        .hero-section {
+            padding: 12rem 3rem 6rem;
+            text-align: center;
+            background: linear-gradient(180deg, #f0f4f0 0%, #f8f7f5 100%);
+        }
+
+        .hero-content {
+            margin-bottom: 4rem;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 600;
+            color: var(--color-text-primary);
+            margin-bottom: 1rem;
+            letter-spacing: 0.1em;
+            line-height: 1.3;
+        }
+
+        .hero-subtitle {
+            font-size: 1rem;
+            color: var(--color-text-muted);
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.2em;
+        }
+
+        .hero-desc {
+            font-size: 0.9rem;
+            color: var(--color-text-secondary);
+            font-style: italic;
+        }
+
+        .hero-image {
+            max-width: 900px;
+            width: 100%;
+            margin: 0 auto;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .hero-image:hover {
+            transform: translateY(-4px);
+        }
+
+        .hero-image img {
+            width: 100%;
+            display: block;
+        }
+
+        .project-section {
+            padding: 6rem 3rem;
+            background: var(--color-bg-secondary);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .section-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--color-accent);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--color-text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .section-title-cn {
+            font-size: 0.9rem;
+            color: var(--color-text-muted);
+            letter-spacing: 0.15em;
+        }
+
+        .image-section {
+            width: 100%;
+        }
+
+        .full-width-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 4px;
+        }
+
+        .campaign-grid .full-width-image {
+            max-width: 100%;
+        }
+
+        .content-card {
+            background: var(--color-card-bg);
+            border-radius: 8px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+            border: 1px solid var(--color-border);
+        }
+
+        .content-card-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.25rem;
+            color: var(--color-text-primary);
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .content-card-title span {
+            color: var(--color-accent);
+            margin-right: 0.75rem;
+        }
+
+        .content-card-text {
+            font-size: 0.95rem;
+            color: var(--color-text-secondary);
+            line-height: 2;
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+
+        .content-card-text:last-child {
+            margin-bottom: 0;
+        }
+
+        .content-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .content-list li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+            color: var(--color-text-secondary);
+            line-height: 1.8;
+        }
+
+        .content-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.6rem;
+            width: 6px;
+            height: 6px;
+            background: var(--color-accent);
+            border-radius: 50%;
+        }
+
+        .campaign-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .campaign-full {
+            width: 100%;
+        }
+
+        .campaign-duo {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .campaign-duo img {
+            width: 100%;
+            height: auto;
+            border-radius: 4px;
+        }
+
+        .campaign-full img {
+            width: 100%;
+            height: auto;
+            border-radius: 4px;
+        }
+
+        .project-footer {
+            padding: 4rem 3rem;
+            text-align: center;
+            background: var(--color-bg-primary);
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            transition: color 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+            letter-spacing: 0.1em;
+        }
+
+        .back-link:hover {
+            color: var(--color-accent);
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 1s cubic-bezier(0.22, 1, 0.36, 1), transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .fade-in-left {
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: opacity 1s cubic-bezier(0.22, 1, 0.36, 1), transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .fade-in-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .fade-in-right {
+            opacity: 0;
+            transform: translateX(30px);
+            transition: opacity 1s cubic-bezier(0.22, 1, 0.36, 1), transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .fade-in-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .scale-in {
+            opacity: 0;
+            transform: scale(0.95);
+            transition: opacity 1s cubic-bezier(0.22, 1, 0.36, 1), transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .scale-in.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 1rem;
+            }
+
+            .nav-right {
+                gap: 1rem;
+            }
+
+            .hero-section {
+                padding: 8rem 1rem 4rem;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .project-section {
+                padding: 4rem 1rem;
+            }
+
+            .content-card {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <script>
+        document.documentElement.classList.add('js-loaded');
+    </script>
+
+    <nav class="navbar">
+        <div class="nav-left">
+            <span class="nav-brand">PORTFOLIO 2026</span>
+            <span class="nav-author">刘奕轩</span>
+        </div>
+        <div class="nav-right">
+            <a href="index.html#home" class="nav-link">HOME</a>
+            <a href="index.html#contents" class="nav-link">CONTENTS</a>
+            <a href="index.html#about" class="nav-link">ABOUT</a>
+            <a href="index.html#contact" class="nav-link">CONTACT</a>
+        </div>
+    </nav>
+
+    <header class="hero-section">
+        <div class="hero-content fade-in">
+            <h1 class="hero-title">钙不钙世的，都是小孩</h1>
+            <p class="hero-subtitle">娃哈哈AD钙奶30周年整合营销策划</p>
+            <p class="hero-desc">品牌策略 · 用户研究 · 创意策划 · 视觉设计</p>
+        </div>
+        <div class="hero-image scale-in">
+            <img src="images/wahaha-adcover.jpg" alt="娃哈哈AD钙奶策划案封面">
+        </div>
+    </header>
+
+    <section class="project-section" style="background: var(--color-bg-primary);">
+        <div class="section-container">
+            <div class="section-header fade-in">
+                <span class="section-number">01</span>
+                <h2 class="section-title">Project Overview 项目概述</h2>
+                <p class="section-title-cn">PROJECT OVERVIEW</p>
+            </div>
+
+            <div class="content-card fade-in-left">
+                <h3 class="content-card-title"><span>01</span>项目名称</h3>
+                <p class="content-card-text">《钙不钙世的，都是小孩》—— 娃哈哈AD钙奶30周年整合营销策划</p>
+            </div>
+
+            <div class="content-card fade-in-right">
+                <h3 class="content-card-title"><span>02</span>项目背景</h3>
+                <p class="content-card-text">2026年恰逢娃哈哈AD钙奶上市30周年。面对年轻消费群体不断变化的消费观念与传播环境，品牌需要在延续经典国民记忆的同时，建立与新一代年轻消费者的情感连接。</p>
+            </div>
+
+            <div class="content-card fade-in-left">
+                <h3 class="content-card-title"><span>03</span>项目目标</h3>
+                <ul class="content-list">
+                    <li>强化品牌30周年节点传播</li>
+                    <li>激活消费者童年情感记忆</li>
+                    <li>提升年轻群体品牌认知</li>
+                    <li>构建线上线下整合传播体系</li>
+                </ul>
+            </div>
+
+            <div class="content-card fade-in-right">
+                <h3 class="content-card-title"><span>04</span>我的职责</h3>
+                <ul class="content-list">
+                    <li>品牌策略</li>
+                    <li>用户研究</li>
+                    <li>创意策划</li>
+                    <li>视觉设计</li>
+                    <li>微电影设计、联名设计、快闪店设计、公益活动设计</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="project-section">
+        <div class="section-container">
+            <div class="section-header fade-in">
+                <span class="section-number">02</span>
+                <h2 class="section-title">Research 用户与市场洞察</h2>
+                <p class="section-title-cn">USER & MARKET RESEARCH</p>
+            </div>
+
+            <div class="content-card fade-in-left">
+                <h3 class="content-card-title"><span>01</span>品牌产品分析</h3>
+                <div class="image-section scale-in">
+                    <img src="images/wahaha-4.jpg" alt="品牌产品分析" class="full-width-image">
+                </div>
+            </div>
+
+            <div class="content-card fade-in-right">
+                <h3 class="content-card-title"><span>02</span>用户洞察</h3>
+                <div class="image-section scale-in">
+                    <img src="images/wahaha-3.jpg" alt="用户洞察" class="full-width-image">
+                </div>
+                <p class="content-card-text" style="margin-top: 1.5rem;">对年轻人而言，AD钙奶不只是饮料，更是一种关于童年的情感符号。</p>
+            </div>
+
+            <div class="content-card fade-in-left">
+                <h3 class="content-card-title"><span>03</span>行业分析</h3>
+                <div class="image-section scale-in">
+                    <img src="images/wahaha-2.jpg" alt="行业分析" class="full-width-image">
+                </div>
+            </div>
+
+            <div class="content-card fade-in-right">
+                <h3 class="content-card-title"><span>04</span>竞品分析</h3>
+                <div class="image-section scale-in">
+                    <img src="images/wahaha-1.jpg" alt="竞品分析" class="full-width-image">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="project-section" style="background: var(--color-bg-primary);">
+        <div class="section-container">
+            <div class="section-header fade-in">
+                <span class="section-number">03</span>
+                <h2 class="section-title">Key Insight 核心洞察</h2>
+                <p class="section-title-cn">KEY INSIGHT</p>
+            </div>
+
+            <div class="image-section scale-in">
+                <img src="images/wahaha-5.jpg" alt="核心洞察" class="full-width-image">
+            </div>
+            <p class="content-card-text" style="margin-top: 1.5rem; text-align: center;">长大以后，我们仍然需要做小孩，消费者购买AD钙奶的动机，不仅来自产品本身，更来自童年记忆、陪伴感与情绪价值。</p>
+        </div>
+    </section>
+
+    <section class="project-section">
+        <div class="section-container">
+            <div class="section-header fade-in">
+                <span class="section-number">04</span>
+                <h2 class="section-title">Campaign System 传播体系设计</h2>
+                <p class="section-title-cn">CAMPAIGN SYSTEM DESIGN</p>
+            </div>
+
+            <div class="campaign-grid">
+                <div class="campaign-full scale-in">
+                    <img src="images/wahaha-campaign-1.jpg" alt="传播体系设计" class="full-width-image">
+                </div>
+
+                <div class="campaign-duo">
+                    <div class="scale-in">
+                        <img src="images/wahaha-campaign-2.jpg" alt="传播体系设计" class="full-width-image">
+                    </div>
+                    <div class="scale-in" style="transition-delay: 0.15s;">
+                        <img src="images/wahaha-campaign-3.jpg" alt="传播体系设计" class="full-width-image">
+                    </div>
+                </div>
+
+                <div class="campaign-duo">
+                    <div class="scale-in">
+                        <img src="images/wahaha-campaign-4.jpg" alt="传播体系设计" class="full-width-image">
+                    </div>
+                    <div class="scale-in" style="transition-delay: 0.15s;">
+                        <img src="images/wahaha-campaign-5.jpg" alt="传播体系设计" class="full-width-image">
+                    </div>
+                </div>
+
+                <div class="campaign-duo">
+                    <div class="scale-in">
+                        <img src="images/wahaha-campaign-6.jpg" alt="传播体系设计" class="full-width-image">
+                    </div>
+                    <div class="scale-in" style="transition-delay: 0.15s;">
+                        <img src="images/wahaha-campaign-7.jpg" alt="传播体系设计" class="full-width-image">
+                    </div>
+                </div>
+
+                <div class="campaign-duo">
+                    <div class="scale-in">
+                        <img src="images/wahaha-campaign-8.jpg" alt="传播体系设计" class="full-width-image">
+                    </div>
+                    <div class="scale-in" style="transition-delay: 0.15s;">
+                        <img src="images/wahaha-campaign-9.jpg" alt="传播体系设计" class="full-width-image">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="project-section" style="background: var(--color-bg-primary);">
+        <div class="section-container">
+            <div class="section-header fade-in">
+                <span class="section-number">05</span>
+                <h2 class="section-title">Creative Design 创意设计</h2>
+                <p class="section-title-cn">CREATIVE DESIGN</p>
+            </div>
+
+            <div class="campaign-grid">
+                <div class="campaign-duo">
+                    <div class="scale-in">
+                        <img src="images/wahaha-creative-1.jpg" alt="创意设计" class="full-width-image">
+                    </div>
+                    <div class="scale-in" style="transition-delay: 0.15s;">
+                        <img src="images/wahaha-creative-2.jpg" alt="创意设计" class="full-width-image">
+                    </div>
+                </div>
+                <div class="campaign-full scale-in" style="transition-delay: 0.3s;">
+                    <img src="images/wahaha-creative-3.jpg" alt="创意设计" class="full-width-image">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="project-section">
+        <div class="section-container">
+            <div class="section-header fade-in">
+                <span class="section-number">06</span>
+                <h2 class="section-title">Project Reflection 项目总结</h2>
+                <p class="section-title-cn">PROJECT REFLECTION</p>
+            </div>
+
+            <div class="content-card fade-in-left">
+                <h3 class="content-card-title"><span>项目收获</span></h3>
+                <p class="content-card-text">通过本次整合营销策划实践，我从品牌定位、用户洞察到创意策略构建，完整体验了一套品牌传播方案的设计流程。项目不仅关注视觉表现，更关注品牌价值与消费者情感需求之间的连接方式。这一过程让我进一步理解了品牌设计不仅是"设计什么"，更是"为什么这样设计"。</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="project-footer">
+        <div class="footer-content">
+            <a href="index.html" class="back-link">← 返回作品列表</a>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小小地留下 - 刘奕轩作品集</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Noto+Serif+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --color-bg-primary: #f8f7f5;
+            --color-bg-secondary: #ffffff;
+            --color-text-primary: #2c2c2c;
+            --color-text-secondary: #5a5a5a;
+            --color-text-muted: #8a8a8a;
+            --color-accent: #8ba888;
+            --color-border: #e8e6e3;
+            --color-card-bg: #ffffff;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Noto Serif SC', serif;
+            background-color: var(--color-bg-primary);
+            color: var(--color-text-primary);
+            line-height: 1.8;
+            overflow-x: hidden;
+            opacity: 0;
+            transition: opacity 1s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        body.js-loaded {
+            opacity: 1;
+        }
+
+        ::selection {
+            background: var(--color-accent);
+            color: #fff;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 3rem;
+            background: rgba(248, 247, 245, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--color-border);
+            transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .navbar.scrolled {
+            padding: 0.8rem 3rem;
+            background: rgba(248, 247, 245, 0.98);
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .nav-brand {
+            font-family: 'Playfair Display', serif;
+            font-size: 0.875rem;
+            letter-spacing: 0.2em;
+            color: var(--color-text-primary);
+        }
+
+        .nav-author {
+            font-size: 0.75rem;
+            color: var(--color-text-muted);
+        }
+
+        .nav-right {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            transition: color 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .nav-link:hover {
+            color: var(--color-accent);
+        }
+
+        .hero-section {
+            padding: 12rem 3rem 6rem;
+            text-align: center;
+            background: linear-gradient(180deg, #f0f4f0 0%, #f8f7f5 100%);
+        }
+
+        .hero-content {
+            margin-bottom: 4rem;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 600;
+            color: var(--color-text-primary);
+            margin-bottom: 1rem;
+            letter-spacing: 0.1em;
+        }
+
+        .hero-subtitle {
+            font-size: 1rem;
+            color: var(--color-text-muted);
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.2em;
+        }
+
+        .hero-desc {
+            font-size: 0.9rem;
+            color: var(--color-text-secondary);
+            font-style: italic;
+        }
+
+        .hero-image {
+            max-width: 900px;
+            width: 100%;
+            margin: 0 auto;
+            position: relative;
+            cursor: pointer;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .hero-image:hover {
+            transform: translateY(-4px);
+        }
+
+        .hero-image img {
+            width: 100%;
+            display: block;
+        }
+
+        .hero-image .play-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .hero-image:hover .play-overlay {
+            opacity: 1;
+        }
+
+        .hero-image .play-icon {
+            width: 70px;
+            height: 70px;
+            border: 2px solid #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: #fff;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .project-section {
+            padding: 6rem 3rem;
+            background: var(--color-bg-secondary);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .section-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--color-accent);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--color-text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .section-title-cn {
+            font-size: 0.9rem;
+            color: var(--color-text-muted);
+            letter-spacing: 0.15em;
+        }
+
+        .image-section {
+            width: 100%;
+        }
+
+        .full-width-image {
+            width: 100%;
+            display: block;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .image-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .stacked-image {
+            width: 100%;
+            display: block;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .content-card {
+            background: var(--color-card-bg);
+            border-radius: 8px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+            border: 1px solid var(--color-border);
+        }
+
+        .content-card-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.25rem;
+            color: var(--color-text-primary);
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .content-card-title span {
+            color: var(--color-accent);
+            margin-right: 0.75rem;
+        }
+
+        .content-card-text {
+            font-size: 0.95rem;
+            color: var(--color-text-secondary);
+            line-height: 2;
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+
+        .content-card-text:last-child {
+            margin-bottom: 0;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .grid-item {
+            background: var(--color-card-bg);
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+            border: 1px solid var(--color-border);
+        }
+
+        .grid-item-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1rem;
+            color: var(--color-text-primary);
+            margin-bottom: 1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .grid-item-text {
+            font-size: 0.875rem;
+            color: var(--color-text-secondary);
+            line-height: 1.8;
+        }
+
+        .story-section {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .story-card {
+            background: var(--color-card-bg);
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+            border: 1px solid var(--color-border);
+            position: relative;
+        }
+
+        .story-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: rgba(139, 168, 136, 0.1);
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            line-height: 1;
+        }
+
+        .story-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            color: var(--color-text-primary);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .story-title::before {
+            content: '';
+            width: 3px;
+            height: 16px;
+            background: var(--color-accent);
+            border-radius: 2px;
+        }
+
+        .story-subtitle {
+            font-size: 0.875rem;
+            color: var(--color-accent);
+            margin-bottom: 1.25rem;
+            letter-spacing: 0.1em;
+        }
+
+        .story-text {
+            font-size: 0.875rem;
+            color: var(--color-text-secondary);
+            line-height: 1.8;
+            margin-bottom: 0.75rem;
+        }
+
+        .project-footer {
+            padding: 4rem 3rem;
+            text-align: center;
+            background: var(--color-bg-primary);
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            transition: color 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+            letter-spacing: 0.1em;
+        }
+
+        .back-link:hover {
+            color: var(--color-accent);
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 1s cubic-bezier(0.22, 1, 0.36, 1), transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .fade-in-left {
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: opacity 1s cubic-bezier(0.22, 1, 0.36, 1), transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .fade-in-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .fade-in-right {
+            opacity: 0;
+            transform: translateX(30px);
+            transition: opacity 1s cubic-bezier(0.22, 1, 0.36, 1), transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .fade-in-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .scale-in {
+            opacity: 0;
+            transform: scale(0.95);
+            transition: opacity 1s cubic-bezier(0.22, 1, 0.36, 1), transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .scale-in.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* 视差效果 */
+        .parallax-section {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .parallax-wrapper {
+            position: relative;
+            transition: transform 0.1s ease-out;
+        }
+
+        .parallax-image {
+            will-change: transform;
+            transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        /* 增强淡入效果 - 交错延迟 */
+        .fade-in[data-delay="100"] {
+            transition-delay: 0.1s;
+        }
+
+        .scale-in[data-delay="300"] {
+            transition-delay: 0.3s;
+        }
+
+        .scale-in[data-delay="500"] {
+            transition-delay: 0.5s;
+        }
+
+        /* 高级感转场 - 渐变蒙版效果 */
+        .section-container::before,
+        .section-container::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 80px;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .video-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1), visibility 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .video-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .video-modal-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+        }
+
+        .video-modal-content {
+            position: relative;
+            max-width: 900px;
+            width: 90%;
+            max-height: 80vh;
+            margin: 10vh auto;
+            background: #fff;
+            border-radius: 4px;
+            overflow: hidden;
+            transform: scale(0.95);
+            transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .video-modal.active .video-modal-content {
+            transform: scale(1);
+        }
+
+        .video-modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 40px;
+            height: 40px;
+            background: rgba(0, 0, 0, 0.3);
+            border: none;
+            border-radius: 50%;
+            color: #fff;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .video-modal-close:hover {
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .video-modal-header {
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .video-modal-title {
+            margin: 0;
+            font-size: 1.25rem;
+            font-weight: 500;
+            color: var(--color-text-primary);
+        }
+
+        .video-modal-desc {
+            margin: 0.5rem 0 0;
+            font-size: 0.875rem;
+            color: var(--color-text-muted);
+        }
+
+        .video-modal-body {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            background: #000;
+        }
+
+        .video-player-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .video-loading {
+            text-align: center;
+            color: #fff;
+        }
+
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-top-color: #fff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .video-player-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 1rem;
+            }
+
+            .nav-right {
+                gap: 1rem;
+            }
+
+            .hero-section {
+                padding: 8rem 1rem 4rem;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .project-section {
+                padding: 4rem 1rem;
+            }
+
+            .content-card {
+                padding: 1.5rem;
+            }
+
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .story-section {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <script>
+        document.documentElement.classList.add('js-loaded');
+    </script>
+
+    <nav class="navbar">
+        <div class="nav-left">
+            <span class="nav-brand">PORTFOLIO 2026</span>
+            <span class="nav-author">刘奕轩</span>
+        </div>
+        <div class="nav-right">
+            <a href="index.html#home" class="nav-link">HOME</a>
+            <a href="index.html#contents" class="nav-link">CONTENTS</a>
+            <a href="index.html#about" class="nav-link">ABOUT</a>
+            <a href="index.html#contact" class="nav-link">CONTACT</a>
+        </div>
+    </nav>
+
+    <header class="hero-section">
+        <div class="hero-content fade-in">
+            <h1 class="hero-title">小小地留下</h1>
+            <p class="hero-subtitle">POP MART MOLLY 20TH ANNIVERSARY</p>
+            <p class="hero-desc">治愈系品牌情感短片</p>
+        </div>
+        <div class="hero-image video-trigger scale-in" data-video-bvid="BV1UP746KE57" data-video-time="0.9">
+            <img src="images/xiaoxiaodi-liuxia.jpg" alt="小小地留下">
+            <div class="play-overlay">
+                <div class="play-icon">▶</div>
+            </div>
+        </div>
+    </header>
+
+    <section class="project-section">
+        <div class="section-container">
+            <div class="section-header fade-in">
+                <span class="section-number">01</span>
+                <h2 class="section-title">设计背景</h2>
+                <p class="section-title-cn">DESIGN BACKGROUND</p>
+            </div>
+
+            <div class="content-card fade-in-left">
+                <h3 class="content-card-title"><span>01</span>现实背景</h3>
+                <p class="content-card-text">在快节奏的都市生活与数字社交环境下，年轻人越来越容易陷入"被忽略感"。人与人之间的连接看似更多，但真正的理解与关注却变得稀缺，许多人逐渐产生存在缺失与自我价值怀疑。</p>
+            </div>
+
+            <div class="content-card fade-in-right">
+                <h3 class="content-card-title"><span>02</span>现实痛点</h3>
+                <p class="content-card-text">影片聚焦当代年轻人的"存在焦虑感"——害怕自己的努力无人看见、情绪无人理解、善意无人记得。这种长期累积的被忽略感，往往会让人逐渐缩小自我，甚至失去对自身价值的确认。</p>
+            </div>
+
+            <div class="content-card fade-in-left">
+                <h3 class="content-card-title"><span>03</span>作品意图</h3>
+                <p class="content-card-text">《小小地留下》借助MOLLY"小画家"的角色设定，以"记录与见证"为切入点，让主角重新发现那些被忽略的温柔瞬间，从而重新确认自身存在的意义，传递"每一个认真生活的人，都值得被看见"的情感价值。</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="project-section" style="background: var(--color-bg-primary);">
+        <div class="section-container">
+            <div class="section-header fade-in">
+                <span class="section-number">02</span>
+                <h2 class="section-title">设计思路</h2>
+                <p class="section-title-cn">DESIGN APPROACH</p>
+            </div>
+
+            <div class="content-card fade-in-left">
+                <h3 class="content-card-title"><span>01</span>核心主题与情感锚点</h3>
+                <p class="content-card-text">影片以"被忽略"与"被看见"为核心主题，围绕年轻人渴望"被理解"情感需求展开叙事。MOLLY作为见证者与陪伴者，通过记录主角生活中的微小善意，帮助她重新发现自身价值，完成从"怀疑存在"到"确认存在"的情感转变。</p>
+            </div>
+
+            <div class="content-card fade-in-right">
+                <h3 class="content-card-title"><span>02</span>视听语言设计</h3>
+                <p class="content-card-text">影片采用奇幻现实主义风格，将"消失"具象化为被忽略感的视觉表达。前期以冷灰低饱和度色调、长焦距构图营造压抑与疏离感；后期通过手绘线条、暖色光感与二维涂鸦逐渐侵入现实空间，形成现实与幻想交融的视觉体验。</p>
+            </div>
+
+            <div class="content-card fade-in-left">
+                <h3 class="content-card-title"><span>03</span>叙事结构设计</h3>
+                <p class="content-card-text">影片采用三幕式结构：第一幕建立主角被忽略的现实困境；第二幕通过MOLLY的出现展开"被记录"的心灵旅程；第三幕完成情感释放与自我确认，实现从"消失"到"留下"的成长闭环。整个故事以"小人物的微光"为切口，传递温暖而治愈的品牌价值。</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="project-section">
+        <div class="section-container">
+            <div class="section-header fade-in">
+                <span class="section-number">03</span>
+                <h2 class="section-title">品牌调研</h2>
+                <p class="section-title-cn">BRAND RESEARCH</p>
+            </div>
+
+            <div class="content-grid">
+                <div class="grid-item fade-in-left">
+                    <h3 class="grid-item-title">01 品牌定位</h3>
+                    <p class="grid-item-text">一个以IP（知识产权）运营为核心的潮流文化娱乐集团，致力于用"创造潮流，传递美好"的品牌文化构建全球潮流玩具乐园。</p>
+                </div>
+
+                <div class="grid-item fade-in-right">
+                    <h3 class="grid-item-title">02 核心任务</h3>
+                    <p class="grid-item-text">IP开发与运营：签约全球艺术家，孵化原创潮流IP，进行全产业链商业化运营。自有渠道：构建覆盖潮流玩具全渠道销售的综合运营平台。</p>
+                </div>
+
+                <div class="grid-item fade-in-left">
+                    <h3 class="grid-item-title">03 主要产品</h3>
+                    <p class="grid-item-text">设计师IP潮流玩具：以盲盒为核心，包含常规款与稀有隐藏款。多元衍生品：开发毛绒玩偶、大尺寸MEGA珍藏系列、徽章、钥匙扣等。</p>
+                </div>
+
+                <div class="grid-item fade-in-right">
+                    <h3 class="grid-item-title">04 体验业务</h3>
+                    <p class="grid-item-text">线下主题乐园：打造集IP展示、互动、休闲于一体的沉浸式线下空间，提供深度的品牌体验。定期举办IP主题展，持续增强品牌黏性。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="project-section" style="background: var(--color-bg-primary);">
+        <div class="section-container">
+            <div class="section-header fade-in">
+                <span class="section-number">04</span>
+                <h2 class="section-title">用户洞察</h2>
+                <p class="section-title-cn">USER INSIGHT</p>
+            </div>
+
+            <div class="content-grid">
+                <div class="grid-item fade-in-left">
+                    <h3 class="grid-item-title">核心用户画像</h3>
+                    <p class="grid-item-text">18-30岁都市青年，生活节奏快，情绪敏感且内敛，常常忽略自己。渴望被理解、被认可，却不擅长主动表达需求。</p>
+                </div>
+
+                <div class="grid-item fade-in-right">
+                    <h3 class="grid-item-title">被忽略感</h3>
+                    <p class="grid-item-text">情绪、付出与善意很少被真正看见。</p>
+                </div>
+
+                <div class="grid-item fade-in-left">
+                    <h3 class="grid-item-title">自我表达需求</h3>
+                    <p class="grid-item-text">她们缺少真正能够自由"表达自我"的渠道和空间，产生了对"沉默型情绪IP"的强烈依赖，希望通过"安静的陪伴"来释放情绪。</p>
+                </div>
+
+                <div class="grid-item fade-in-right">
+                    <h3 class="grid-item-title">压抑内耗</h3>
+                    <p class="grid-item-text">长期"社会化"过程，她们隐藏起真实的自己，缺少"真正属于自己的精神空间"。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="project-section">
+        <div class="section-container">
+            <div class="section-header fade-in">
+                <span class="section-number">05</span>
+                <h2 class="section-title">设计创意</h2>
+                <p class="section-title-cn">DESIGN CONCEPT</p>
+            </div>
+
+            <div class="content-grid">
+                <div class="grid-item fade-in-left">
+                    <h3 class="grid-item-title">类型</h3>
+                    <p class="grid-item-text">治愈系品牌情感短片<br>情绪广告 + 魔幻现实主义<br>微电影 + IP故事化表达</p>
+                </div>
+
+                <div class="grid-item fade-in-right">
+                    <h3 class="grid-item-title">主题</h3>
+                    <p class="grid-item-text">"Molly会陪你看见，那些容易忽略的自己。"</p>
+                </div>
+
+                <div class="grid-item fade-in-left">
+                    <h3 class="grid-item-title">内容</h3>
+                    <p class="grid-item-text">围绕主角从被忽略 → 被记录 → 被看见 → 重新留下自己展开。</p>
+                </div>
+
+                <div class="grid-item fade-in-right">
+                    <h3 class="grid-item-title">情感</h3>
+                    <p class="grid-item-text">陪伴感、治愈感、存在感、<br>自我认同、温暖共鸣</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="project-section" style="background: var(--color-bg-primary);">
+        <div class="section-container">
+            <div class="section-header fade-in">
+                <span class="section-number">06</span>
+                <h2 class="section-title">故事架构</h2>
+                <p class="section-title-cn">STORY STRUCTURE</p>
+            </div>
+
+            <div class="story-section">
+                <div class="story-card fade-in-left">
+                    <span class="story-number">01</span>
+                    <h3 class="story-title">起 —— 渐渐消失</h3>
+                    <p class="story-text"><strong>画面：</strong>家中、公司、街道</p>
+                    <p class="story-text"><strong>含义：</strong>建立主角的核心困境，她并非遭遇重大打击，而是在无数微小忽略中慢慢变透明。</p>
+                </div>
+
+                <div class="story-card fade-in-right">
+                    <span class="story-number">02</span>
+                    <h3 class="story-title">承 —— Molly开始记录</h3>
+                    <p class="story-text"><strong>画面：</strong>出现手绘线条，追寻线条发现路上有关于自己的涂鸦画</p>
+                    <p class="story-text"><strong>含义：</strong>MOLLY作为"见证者"正式进入故事。</p>
+                </div>
+
+                <div class="story-card fade-in-left">
+                    <span class="story-number">03</span>
+                    <h3 class="story-title">转 —— 看见自己</h3>
+                    <p class="story-text"><strong>画面：</strong>女孩崩溃，Molly安慰"可我记得"</p>
+                    <p class="story-text"><strong>含义：</strong>完成全片最大情感转折。主角身体渐渐恢复。</p>
+                </div>
+
+                <div class="story-card fade-in-right">
+                    <span class="story-number">04</span>
+                    <h3 class="story-title">合 —— 留下</h3>
+                    <p class="story-text"><strong>画面：</strong>城市各个角落出现Molly的画</p>
+                    <p class="story-text"><strong>含义：</strong>主角完成成长，开启新生活。Molly继续陪伴。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="project-section parallax-section" data-parallax-speed="0.15">
+        <div class="section-container">
+            <div class="section-header fade-in" data-delay="100">
+                <span class="section-number">07</span>
+                <h2 class="section-title">脚本可视化</h2>
+                <p class="section-title-cn">SCRIPT VISUALIZATION</p>
+            </div>
+
+            <div class="parallax-wrapper" data-parallax-offset="0">
+                <div class="image-section scale-in" data-delay="300">
+                    <img src="images/xiaoxiao-4.jpg" alt="脚本可视化" class="full-width-image parallax-image">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="project-section parallax-section" style="background: var(--color-bg-primary);" data-parallax-speed="0.12">
+        <div class="section-container">
+            <div class="section-header fade-in" data-delay="100">
+                <span class="section-number">08</span>
+                <h2 class="section-title">技术应用</h2>
+                <p class="section-title-cn">TECHNOLOGY APPLICATION</p>
+            </div>
+
+            <div class="parallax-wrapper" data-parallax-offset="0">
+                <div class="image-stack">
+                    <div class="scale-in" data-delay="300">
+                        <img src="images/xiaoxiao-5.jpg" alt="技术应用" class="stacked-image parallax-image">
+                    </div>
+                    <div class="scale-in" data-delay="500" style="transition-delay: 0.2s;">
+                        <img src="images/xiaoxiao-6.jpg" alt="技术应用" class="stacked-image parallax-image">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="project-footer">
+        <div class="footer-content">
+            <a href="index.html" class="back-link">← 返回作品列表</a>
+        </div>
+    </footer>
+
+    <div id="video-modal" class="video-modal">
+        <div class="video-modal-overlay"></div>
+        <div class="video-modal-content">
+            <button class="video-modal-close">
+                <span class="close-icon">×</span>
+            </button>
+            <div class="video-modal-header">
+                <h3 id="video-modal-title" class="video-modal-title">视频标题</h3>
+                <p id="video-modal-desc" class="video-modal-desc">视频描述</p>
+            </div>
+            <div class="video-modal-body">
+                <div id="video-player-container" class="video-player-container">
+                    <div class="video-loading">
+                        <div class="loading-spinner"></div>
+                        <p>加载中...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

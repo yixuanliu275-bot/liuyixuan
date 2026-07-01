@@ -1,0 +1,2195 @@
+/* ========================================
+   西湖千年精神史诗 - 项目详情页
+======================================== */
+
+.project-body {
+    background-color: #f5f3f0;
+    color: #333;
+}
+
+/* 导航栏 */
+.project-body .nav {
+    background: rgba(245, 243, 240, 0.95);
+}
+
+.project-body .nav-logo,
+.project-body .nav-menu a {
+    color: #333;
+}
+
+.project-body .nav-menu a:hover {
+    color: #666;
+}
+
+/* 首屏 */
+.project-hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 2rem;
+    background: linear-gradient(135deg, #e8e4dd 0%, #f5f3f0 50%, #e8e4dd 100%);
+    position: relative;
+}
+
+.hero-content {
+    z-index: 1;
+    margin-bottom: 3rem;
+}
+
+.hero-title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 3.5rem;
+    font-weight: 500;
+    letter-spacing: 0.3em;
+    color: #2c2c2c;
+    margin-bottom: 1rem;
+}
+
+.hero-subtitle {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    letter-spacing: 0.4em;
+    color: #8a8a8a;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+}
+
+.hero-desc {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 1.125rem;
+    font-weight: 300;
+    letter-spacing: 0.2em;
+    color: #666;
+}
+
+.hero-image {
+    max-width: 800px;
+    width: 100%;
+    border: 1px solid #d4d0c8;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    position: relative;
+    cursor: pointer;
+}
+
+.hero-image img {
+    width: 100%;
+    display: block;
+}
+
+.hero-intro {
+    max-width: 800px;
+    width: 100%;
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.hero-intro-title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    color: #b8966f;
+    margin-bottom: 1rem;
+}
+
+.hero-intro-text {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 0.9375rem;
+    font-weight: 300;
+    line-height: 2;
+    color: #666;
+    letter-spacing: 0.05em;
+}
+
+.hero-image .play-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.hero-image:hover .play-overlay {
+    opacity: 1;
+}
+
+.hero-image .play-icon {
+    width: 60px;
+    height: 60px;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    color: #fff;
+}
+
+/* 通用区块 */
+.project-section {
+    padding: 6rem 2rem;
+}
+
+.section-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.section-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.875rem;
+    letter-spacing: 0.3em;
+    color: #b8966f;
+    margin-bottom: 0.5rem;
+}
+
+.section-title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 2rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    color: #2c2c2c;
+}
+
+/* 米色背景 */
+.bg-beige {
+    background-color: #f5f3f0;
+}
+
+.bg-dark {
+    background-color: #1a1a1f;
+}
+
+/* 设计背景 - 卡片 */
+.content-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.bg-card {
+    background: #fff;
+    padding: 2.5rem;
+    border-left: 3px solid #b8966f;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.card-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    font-weight: 300;
+    color: #e8e4dd;
+    line-height: 1;
+    margin-bottom: 1rem;
+}
+
+.card-title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 1.125rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    color: #2c2c2c;
+    margin-bottom: 1rem;
+}
+
+.card-text {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 0.9375rem;
+    font-weight: 300;
+    line-height: 2;
+    color: #666;
+    letter-spacing: 0.05em;
+}
+
+.card-label {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    color: #b8966f;
+    margin-bottom: 0.75rem;
+    text-transform: uppercase;
+}
+
+/* 设计思路 - 卡片 */
+.idea-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.idea-card {
+    background: #e8e4dd;
+    padding: 2rem 2.5rem;
+    border-radius: 8px;
+}
+
+.idea-title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 1.125rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    color: #2c2c2c;
+    margin-bottom: 1rem;
+}
+
+.idea-text {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 0.9375rem;
+    font-weight: 300;
+    line-height: 2;
+    color: #555;
+    letter-spacing: 0.05em;
+}
+
+/* 设计创意 - 网格 */
+.creative-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.creative-card {
+    background: #fff;
+    padding: 2rem;
+    border: 1px solid #d4d0c8;
+}
+
+.innovation-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+}
+
+.innovation-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    background: #f5f3f0;
+    padding: 1.5rem;
+    border-radius: 4px;
+}
+
+.innovation-icon {
+    font-size: 2rem;
+}
+
+.innovation-text {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #555;
+    text-align: center;
+}
+
+.innovation-card {
+    background: #fff;
+    padding: 2rem;
+    border: 1px solid #d4d0c8;
+    text-align: center;
+}
+
+.innovation-title {
+    display: block;
+    font-family: 'Noto Serif SC', serif;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #b8966f;
+    margin-bottom: 0.75rem;
+}
+
+.innovation-text {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 0.875rem;
+    font-weight: 300;
+    line-height: 1.8;
+    color: #666;
+}
+
+/* 故事架构 */
+.story-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 4rem;
+}
+
+.story-card {
+    background: #fff;
+    padding: 2rem;
+    border: 1px solid #d4d0c8;
+    text-align: center;
+}
+
+.story-title {
+    display: block;
+    font-family: 'Noto Serif SC', serif;
+    font-size: 2rem;
+    font-weight: 500;
+    color: #2c2c2c;
+    margin-bottom: 1rem;
+}
+
+.story-desc {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 0.875rem;
+    font-weight: 300;
+    line-height: 1.8;
+    color: #666;
+}
+
+/* 故事流程 */
+.story-flow {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+}
+
+.flow-item {
+    text-align: center;
+}
+
+.flow-label {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    background: #b8966f;
+    color: #fff;
+    font-family: 'Noto Serif SC', serif;
+    font-size: 1.125rem;
+    font-weight: 500;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+}
+
+.flow-item p {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 0.875rem;
+    font-weight: 300;
+    line-height: 1.8;
+    color: #555;
+}
+
+/* 技术应用 */
+.tech-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #fff;
+    padding: 2rem;
+    border: 1px solid #d4d0c8;
+    margin-bottom: 3rem;
+}
+
+.tech-tools {
+    width: 35%;
+}
+
+.tool-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.75rem;
+}
+
+.tool-item {
+    background: #e8e4dd;
+    padding: 0.75rem;
+    text-align: center;
+    font-family: 'Noto Serif SC', serif;
+    font-size: 0.8125rem;
+    color: #555;
+}
+
+.tool-item.blender {
+    background: #f5f3f0;
+    border: 2px solid #eb5a24;
+    color: #eb5a24;
+}
+
+.tool-item.tts {
+    background: #f5f3f0;
+    border: 2px solid #2c2c2c;
+}
+
+.tech-formula {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.formula-box {
+    width: 80px;
+    height: 80px;
+    line-height: 80px;
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    border-radius: 50%;
+}
+
+.formula-box.ai {
+    background: #b8966f;
+    color: #fff;
+}
+
+.formula-box.three-d {
+    background: #2c2c2c;
+    color: #fff;
+}
+
+.formula-plus {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: #b8966f;
+}
+
+.tech-stages {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 2rem;
+}
+
+.stage {
+    flex: 1;
+    background: #fff;
+    padding: 1.5rem;
+    border: 1px solid #d4d0c8;
+}
+
+.stage-title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #b8966f;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.stage-items {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.stage-item {
+    background: #e8e4dd;
+    padding: 0.75rem;
+    text-align: center;
+    font-family: 'Noto Serif SC', serif;
+    font-size: 0.875rem;
+    color: #555;
+}
+
+.stage-tools {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.stage-tools span {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 0.75rem;
+    color: #888;
+    text-align: center;
+}
+
+.stage-arrow {
+    font-size: 2rem;
+    color: #b8966f;
+    align-self: center;
+}
+
+/* 任务流程展示 */
+.process-timeline {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 3rem;
+}
+
+.process-step {
+    text-align: center;
+}
+
+.step-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.875rem;
+    color: #b8966f;
+    margin-right: 0.5rem;
+}
+
+.step-name {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 0.875rem;
+    color: #2c2c2c;
+}
+
+.process-line {
+    flex: 1;
+    height: 2px;
+    background: #d4d0c8;
+    margin: 0 0.5rem;
+}
+
+.process-collab {
+    background: #fff;
+    padding: 2rem;
+    border: 1px solid #d4d0c8;
+    margin-bottom: 3rem;
+}
+
+.collab-box {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.collab-role {
+    text-align: center;
+}
+
+.role-icon {
+    font-size: 2rem;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.role-name {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 0.875rem;
+    color: #555;
+}
+
+.collab-center {
+    text-align: center;
+}
+
+.collab-center span {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #b8966f;
+    background: #e8e4dd;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+}
+
+.collab-arrows {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.arrow-item {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 0.75rem;
+    color: #888;
+}
+
+.process-detail {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.detail-section {
+    background: #fff;
+    padding: 1.5rem;
+    border: 1px solid #d4d0c8;
+}
+
+.detail-title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #2c2c2c;
+    margin-bottom: 1rem;
+}
+
+.detail-list {
+    list-style: none;
+    padding: 0;
+}
+
+.detail-list li {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 0.875rem;
+    color: #555;
+    padding: 0.5rem 0;
+    border-bottom: 1px dashed #d4d0c8;
+    position: relative;
+    padding-left: 1rem;
+}
+
+.detail-list li::before {
+    content: '◆';
+    position: absolute;
+    left: 0;
+    color: #b8966f;
+    font-size: 0.625rem;
+}
+
+.video-tools {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.video-tools span {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 0.75rem;
+    color: #fff;
+    background: #b8966f;
+    padding: 0.25rem 0.75rem;
+    border-radius: 4px;
+}
+
+.detail-desc {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 0.875rem;
+    line-height: 1.8;
+    color: #555;
+}
+
+/* 图片展示区块 */
+.image-section {
+    margin-top: 2rem;
+}
+
+.full-width-image {
+    width: 100%;
+    display: block;
+    border: 1px solid #d4d0c8;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.image-stack {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.stacked-image {
+    width: 100%;
+    display: block;
+    border: 1px solid #d4d0c8;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* 返回链接 */
+.back-link {
+    text-align: center;
+}
+
+.back-link a {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.875rem;
+    letter-spacing: 0.2em;
+    color: #a8a5a0;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.back-link a:hover {
+    color: #f5f3f0;
+}
+
+/* 页脚 */
+.project-body .footer {
+    background-color: #1a1a1f;
+    padding: 3rem 2rem;
+}
+
+.project-body .footer p {
+    color: #6b6966;
+}
+
+/* 响应式 */
+@media (max-width: 1024px) {
+    .content-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .creative-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .innovation-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .story-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .story-flow {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+}
+
+@media (max-width: 1024px) {
+    .tech-header {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    
+    .tech-tools {
+        width: 100%;
+    }
+    
+    .tech-stages {
+        flex-direction: column;
+    }
+    
+    .stage-arrow {
+        transform: rotate(90deg);
+    }
+    
+    .process-timeline {
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+    
+    .process-line {
+        display: none;
+    }
+    
+    .process-detail {
+        grid-template-columns: 1fr;
+    }
+    
+    .collab-box {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2rem;
+        letter-spacing: 0.2em;
+    }
+    
+    .project-section {
+        padding: 3rem 1.5rem;
+    }
+    
+    .bg-card {
+        padding: 1.5rem;
+    }
+    
+    .innovation-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .story-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .tool-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .formula-box {
+        width: 60px;
+        height: 60px;
+        line-height: 60px;
+        font-size: 1.25rem;
+    }
+}
+
+/* 廉政之本 - 项目概述样式 */
+.overview-content {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.overview-item {
+    background: #fff;
+    padding: 2.5rem;
+    margin-bottom: 2rem;
+    border-left: 3px solid #b8966f;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.overview-title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    color: #b8966f;
+    margin-bottom: 1.5rem;
+}
+
+.overview-name {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 2rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    color: #2c2c2c;
+    margin-bottom: 0.5rem;
+}
+
+.overview-en {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    letter-spacing: 0.15em;
+    color: #8a8a8a;
+    margin-bottom: 0.5rem;
+}
+
+.overview-type {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 0.875rem;
+    color: #666;
+}
+
+.overview-subtitle {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 0.875rem;
+    color: #8a8a8a;
+    margin-bottom: 1.5rem;
+}
+
+.overview-text {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 0.9375rem;
+    font-weight: 300;
+    line-height: 2;
+    color: #666;
+    letter-spacing: 0.05em;
+    margin-bottom: 1.5rem;
+}
+
+.overview-text:last-child {
+    margin-bottom: 0;
+}
+
+.overview-info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.info-card {
+    background: #fff;
+    padding: 2rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.info-label {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    color: #b8966f;
+    margin-bottom: 1rem;
+}
+
+.info-value {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 0.875rem;
+    color: #555;
+    line-height: 1.8;
+    margin-bottom: 0.5rem;
+}
+
+.info-value:last-child {
+    margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+    .overview-info-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .overview-item {
+        padding: 1.5rem;
+    }
+    
+    .overview-name {
+        font-size: 1.5rem;
+    }
+}
+
+/* 账单风暴 - 品牌与IP研究样式 */
+.research-content {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.research-item {
+    background: #fff;
+    padding: 2.5rem;
+    margin-bottom: 2rem;
+    border-left: 3px solid #b8966f;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.research-title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    color: #b8966f;
+    margin-bottom: 1.5rem;
+}
+
+.research-brand {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 1.5rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    color: #2c2c2c;
+    margin-bottom: 2rem;
+}
+
+.brand-keywords {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.brand-keyword {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    background: #f5f3f0;
+    padding: 1.25rem 2rem;
+    border-radius: 4px;
+}
+
+.keyword-icon {
+    font-size: 2rem;
+}
+
+.keyword-text {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #555;
+}
+
+.ip-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+}
+
+.ip-card {
+    background: #f5f3f0;
+    padding: 1.5rem;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.ip-image {
+    margin-bottom: 1rem;
+}
+
+.ip-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+}
+
+.ip-name {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #2c2c2c;
+}
+
+@media (max-width: 768px) {
+    .research-item {
+        padding: 1.5rem;
+    }
+    
+    .brand-keywords {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .ip-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* 廉政之本 - 历史研究样式 */
+.history-content {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.history-item {
+    background: #fff;
+    padding: 2.5rem;
+    margin-bottom: 2rem;
+    border-left: 3px solid #b8966f;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.history-title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    color: #b8966f;
+    margin-bottom: 1.5rem;
+}
+
+.history-title-cn {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 0.875rem;
+    color: #8a8a8a;
+    margin-bottom: 1rem;
+}
+
+.history-person {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 1.5rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    color: #2c2c2c;
+    margin-bottom: 2rem;
+}
+
+.keywords-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.keyword-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    background: #f5f3f0;
+    padding: 1.25rem 2rem;
+    border-radius: 4px;
+}
+
+.keyword-icon {
+    font-size: 2rem;
+}
+
+.keyword-text {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #555;
+}
+
+.insight-box {
+    background: #2c2c2c;
+    padding: 2rem;
+    border-radius: 4px;
+}
+
+.insight-text {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 1.125rem;
+    font-weight: 300;
+    line-height: 1.8;
+    color: #f5f3f0;
+    text-align: center;
+    letter-spacing: 0.1em;
+}
+
+.history-text {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 0.9375rem;
+    font-weight: 300;
+    line-height: 2;
+    color: #666;
+    letter-spacing: 0.05em;
+}
+
+.design-insight-box {
+    background: #b8966f;
+    padding: 2rem;
+    border-radius: 4px;
+}
+
+.design-insight-text {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 1.125rem;
+    font-weight: 300;
+    line-height: 1.8;
+    color: #fff;
+    text-align: center;
+    letter-spacing: 0.1em;
+}
+
+@media (max-width: 768px) {
+    .history-item {
+        padding: 1.5rem;
+    }
+    
+    .keywords-grid {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .keyword-item {
+        padding: 1rem;
+    }
+}
+
+/* 廉政之本 - 创意策略样式 */
+.strategy-content {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.strategy-item {
+    background: #fff;
+    padding: 2.5rem;
+    margin-bottom: 2rem;
+    border-left: 3px solid #b8966f;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.strategy-title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    color: #b8966f;
+    margin-bottom: 1.5rem;
+}
+
+.strategy-title-cn {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 0.875rem;
+    color: #8a8a8a;
+    margin-bottom: 1rem;
+}
+
+.creative-core {
+    background: #2c2c2c;
+    padding: 2rem;
+    border-radius: 4px;
+    margin-bottom: 1.5rem;
+}
+
+.creative-slogan {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 1.125rem;
+    font-weight: 500;
+    line-height: 1.8;
+    color: #f5f3f0;
+    text-align: center;
+    letter-spacing: 0.1em;
+}
+
+.creative-subtitle {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #2c2c2c;
+    margin-bottom: 1rem;
+}
+
+.creative-text {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 0.9375rem;
+    font-weight: 300;
+    line-height: 2;
+    color: #666;
+    letter-spacing: 0.05em;
+}
+
+.strategy-keywords {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.strategy-keyword {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #555;
+    background: #f5f3f0;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+}
+
+.logic-flow {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.flow-step {
+    background: #fff;
+    border: 1px solid #d4d0c8;
+    padding: 1rem 2rem;
+    text-align: center;
+}
+
+.flow-text {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: #555;
+    letter-spacing: 0.05em;
+}
+
+.flow-arrow {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: #b8966f;
+}
+
+@media (max-width: 768px) {
+    .strategy-item {
+        padding: 1.5rem;
+    }
+    
+    .strategy-keywords {
+        flex-direction: column;
+    }
+    
+    .flow-step {
+        padding: 0.75rem 1.5rem;
+    }
+}
+
+/* 廉政之本 - 故事构建样式 */
+.story-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.story-section-title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 1.25rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    color: #b8966f;
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.story-acts {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.story-act {
+    background: #fff;
+    padding: 2.5rem;
+    border-left: 3px solid #b8966f;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    position: relative;
+}
+
+.act-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 4rem;
+    font-weight: 300;
+    color: #e8e4dd;
+    line-height: 1;
+    margin-bottom: 1rem;
+}
+
+.act-title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: #2c2c2c;
+    margin-bottom: 0.5rem;
+}
+
+.act-subtitle {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.875rem;
+    letter-spacing: 0.2em;
+    color: #b8966f;
+    margin-bottom: 1.5rem;
+}
+
+.act-list {
+    list-style: none;
+    padding: 0;
+}
+
+.act-list li {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 0.875rem;
+    font-weight: 300;
+    line-height: 1.8;
+    color: #666;
+    padding: 0.5rem 0;
+    position: relative;
+    padding-left: 1.25rem;
+}
+
+.act-list li::before {
+    content: '◆';
+    position: absolute;
+    left: 0;
+    color: #b8966f;
+    font-size: 0.625rem;
+}
+
+.final-quote {
+    background: #2c2c2c;
+    padding: 1.5rem;
+    border-radius: 4px;
+    margin-top: 1.5rem;
+}
+
+.final-quote p {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #f5f3f0;
+    text-align: center;
+    letter-spacing: 0.1em;
+}
+
+@media (max-width: 1024px) {
+    .story-acts {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .story-act {
+        padding: 1.5rem;
+    }
+    
+    .act-number {
+        font-size: 3rem;
+    }
+}
+
+/* 廉政之本 - 视觉设计样式 */
+.visual-content {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.visual-item {
+    background: #fff;
+    padding: 2.5rem;
+    margin-bottom: 2rem;
+    border-left: 3px solid #b8966f;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.visual-title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    color: #b8966f;
+    margin-bottom: 1.5rem;
+}
+
+.visual-text {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 0.9375rem;
+    font-weight: 300;
+    line-height: 2;
+    color: #666;
+    letter-spacing: 0.05em;
+    margin-bottom: 1rem;
+}
+
+.visual-en {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.875rem;
+    color: #8a8a8a;
+}
+
+.color-palette {
+    display: flex;
+    gap: 2rem;
+    margin-top: 1.5rem;
+}
+
+.color-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.color-box {
+    width: 80px;
+    height: 80px;
+    border-radius: 4px;
+    border: 1px solid #d4d0c8;
+}
+
+.color-name {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #555;
+}
+
+.color-code {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.75rem;
+    color: #8a8a8a;
+}
+
+.camera-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+
+.camera-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    background: #f5f3f0;
+    padding: 1.5rem;
+    border-radius: 4px;
+}
+
+.camera-icon {
+    font-size: 2rem;
+}
+
+.camera-text {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #555;
+    text-align: center;
+}
+
+.workflow-image {
+    margin-top: 1rem;
+}
+
+.workflow-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* AI Production Pipeline 样式 */
+.pipeline-flow {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.pipeline-step {
+    background: #fff;
+    border: 1px solid #d4d0c8;
+    padding: 1rem 2rem;
+    text-align: center;
+}
+
+.pipeline-text {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: #555;
+    letter-spacing: 0.05em;
+}
+
+.pipeline-arrow {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: #b8966f;
+}
+
+/* 分镜展示样式 */
+.storyboard-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.storyboard-image {
+    background: #fff;
+    padding: 1rem;
+    border-radius: 4px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.storyboard-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+}
+
+/* Dreamvale - 世界观设定样式 */
+.world-content {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.world-map {
+    background: #fff;
+    padding: 4rem;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    margin-bottom: 2rem;
+}
+
+.map-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 500;
+    color: #2c2c2c;
+    margin-bottom: 2rem;
+}
+
+.map-region {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.region-icon {
+    font-size: 2rem;
+}
+
+.region-name {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #555;
+}
+
+.region-character {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.875rem;
+    color: #b8966f;
+}
+
+.map-arrow {
+    font-size: 1.5rem;
+    color: #b8966f;
+    margin-bottom: 0.5rem;
+}
+
+.map-line {
+    font-size: 0.75rem;
+    color: #d4d0c8;
+    margin-bottom: 1.5rem;
+}
+
+.map-regions-bottom {
+    display: flex;
+    justify-content: space-around;
+}
+
+.world-regions {
+    text-align: center;
+}
+
+.world-title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    color: #2c2c2c;
+    margin-bottom: 2rem;
+}
+
+.regions-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.region-card {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 4px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.region-emoji {
+    font-size: 2.5rem;
+}
+
+.region-en {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.9375rem;
+    color: #555;
+}
+
+.region-cn {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 0.875rem;
+    color: #8a8a8a;
+}
+
+.world-text {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 0.9375rem;
+    color: #666;
+    margin-bottom: 0.5rem;
+}
+
+.world-keywords {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 1.5rem;
+}
+
+.world-keyword {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: #b8966f;
+    padding: 0.5rem 1.5rem;
+    border: 2px solid #b8966f;
+    border-radius: 20px;
+}
+
+@media (max-width: 768px) {
+    .world-map {
+        padding: 2rem;
+    }
+    
+    .regions-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .map-regions-bottom {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .world-keywords {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+/* Dreamvale - 角色设计样式 */
+.character-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.character-card {
+    background: #fff;
+    padding: 3rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    margin-bottom: 3rem;
+}
+
+.character-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.character-emoji {
+    font-size: 2.5rem;
+}
+
+.character-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 500;
+    color: #2c2c2c;
+}
+
+.character-images {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.character-image-box {
+    flex: 1;
+    position: relative;
+    background: #f5f3f0;
+    overflow: hidden;
+}
+
+.character-image-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.image-label {
+    position: absolute;
+    bottom: 0.75rem;
+    left: 0.75rem;
+    font-family: 'Noto Serif SC', serif;
+    font-size: 0.75rem;
+    color: #8a8a8a;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 0.25rem 0.75rem;
+    border-radius: 4px;
+}
+
+.aspect-5-4 {
+    aspect-ratio: 5/4;
+}
+
+.character-info {
+    display: flex;
+    gap: 3rem;
+    margin-bottom: 1.5rem;
+}
+
+.info-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.info-label {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 0.875rem;
+    color: #8a8a8a;
+}
+
+.info-value {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: #555;
+}
+
+.character-keywords {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.keyword {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 0.75rem;
+    color: #666;
+    padding: 0.5rem 1rem;
+    background: #f5f3f0;
+    border-radius: 4px;
+}
+
+.character-hobbies {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.hobby {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 0.75rem;
+    color: #8a8a8a;
+    padding: 0.5rem 1rem;
+    border: 1px solid #d4d0c8;
+    border-radius: 4px;
+}
+
+.character-desc {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 0.9375rem;
+    line-height: 2;
+    color: #666;
+    margin-bottom: 1.5rem;
+    text-align: justify;
+}
+
+.character-slogan {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.125rem;
+    font-style: italic;
+    color: #b8966f;
+    text-align: center;
+    padding-top: 1.5rem;
+    border-top: 1px solid #d4d0c8;
+}
+
+@media (max-width: 768px) {
+    .character-card {
+        padding: 1.5rem;
+    }
+    
+    .character-images {
+        flex-direction: column;
+    }
+    
+    .character-info {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+}
+
+/* Dreamvale - 角色设计语言样式 */
+.language-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.language-card {
+    background: #fff;
+    padding: 3rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    margin-bottom: 3rem;
+}
+
+.language-header {
+    margin-bottom: 2rem;
+}
+
+.language-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 500;
+    color: #2c2c2c;
+}
+
+.language-section {
+    margin-bottom: 2rem;
+}
+
+.language-section:last-child {
+    margin-bottom: 0;
+}
+
+.language-section-title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    color: #b8966f;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+}
+
+.element-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1.5rem;
+}
+
+.element-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1.5rem;
+    background: #f5f3f0;
+    border-radius: 4px;
+}
+
+.element-emoji {
+    font-size: 2.5rem;
+}
+
+.element-text {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 0.875rem;
+    color: #555;
+}
+
+.design-meaning {
+    padding-left: 1.5rem;
+}
+
+.design-meaning li {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 0.9375rem;
+    line-height: 2;
+    color: #666;
+    margin-bottom: 0.5rem;
+}
+
+.design-meaning li:last-child {
+    margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+    .language-card {
+        padding: 1.5rem;
+    }
+    
+    .element-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Dreamvale - 衍生设计样式 */
+.derivative-images {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.derivative-image-item {
+    width: 100%;
+}
+
+.derivative-image-item img {
+    width: 100%;
+    border-radius: 4px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+.color-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.color-card {
+    background: #fff;
+    padding: 3rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    margin-bottom: 3rem;
+}
+
+.color-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.color-emoji {
+    font-size: 2.5rem;
+}
+
+.color-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 500;
+    color: #2c2c2c;
+}
+
+.color-palette {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.color-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.color-box {
+    width: 100%;
+    aspect-ratio: 4/3;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.color-type {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.75rem;
+    color: #8a8a8a;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.color-code {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #555;
+}
+
+.color-meaning {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.meaning-tag {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 0.875rem;
+    color: #666;
+    padding: 0.5rem 1.25rem;
+    background: #f5f3f0;
+    border-radius: 20px;
+}
+
+@media (max-width: 768px) {
+    .color-card {
+        padding: 1.5rem;
+    }
+    
+    .color-palette {
+        flex-direction: column;
+    }
+    
+    .color-meaning {
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 768px) {
+    .visual-item {
+        padding: 1.5rem;
+    }
+    
+    .color-palette {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .camera-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* 廉政之本 - 分镜展示样式 */
+.storyboard-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.storyboard-image {
+    background: #fff;
+    padding: 1.5rem;
+    border-left: 3px solid #b8966f;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.storyboard-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+}
+
+/* 廉政之本 - 项目总结样式 */
+.reflection-content {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.reflection-item {
+    background: #fff;
+    padding: 2.5rem;
+    margin-bottom: 2rem;
+    border-left: 3px solid #b8966f;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.reflection-title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    color: #b8966f;
+    margin-bottom: 1.5rem;
+}
+
+.reflection-text {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 0.9375rem;
+    font-weight: 300;
+    line-height: 2;
+    color: #666;
+    letter-spacing: 0.05em;
+    margin-bottom: 1.5rem;
+}
+
+.reflection-text:last-child {
+    margin-bottom: 0;
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+
+.skill-card {
+    background: #f5f3f0;
+    padding: 1.5rem;
+    border-radius: 4px;
+}
+
+.skill-label {
+    display: block;
+    font-family: 'Noto Serif SC', serif;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #2c2c2c;
+    margin-bottom: 0.25rem;
+}
+
+.skill-en {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-size: 0.75rem;
+    color: #b8966f;
+    margin-bottom: 1rem;
+}
+
+.skill-desc {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 0.8125rem;
+    font-weight: 300;
+    line-height: 1.8;
+    color: #666;
+}
+
+@media (max-width: 768px) {
+    .reflection-item {
+        padding: 1.5rem;
+    }
+    
+    .skills-grid {
+        grid-template-columns: 1fr;
+    }
+}
