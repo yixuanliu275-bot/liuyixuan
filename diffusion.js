@@ -52,12 +52,11 @@ class DiffusionGradient {
         });
         
         this.canvas.addEventListener('touchmove', (e) => {
-            e.preventDefault();
             const rect = this.canvas.getBoundingClientRect();
             const touch = e.touches[0];
             this.mouseX = touch.clientX - rect.left;
             this.mouseY = touch.clientY - rect.top;
-        }, { passive: false });
+        }, { passive: true });
         
         this.canvas.addEventListener('touchend', () => {
             this.mouseX = null;
@@ -91,32 +90,31 @@ class DiffusionGradient {
             }
         });
         
-        // 监听触摸开始事件
+        // 监听触摸开始事件（不阻止默认滚动行为）
         document.addEventListener('touchstart', (e) => {
             const target = e.target;
-            const isInteractive = target.closest('a') || 
-                                  target.closest('button') || 
-                                  target.closest('input') || 
-                                  target.closest('textarea') || 
-                                  target.closest('select') || 
+            const isInteractive = target.closest('a') ||
+                                  target.closest('button') ||
+                                  target.closest('input') ||
+                                  target.closest('textarea') ||
+                                  target.closest('select') ||
                                   target.closest('[role="button"]') ||
                                   target.closest('.video-play-btn') ||
                                   target.tagName === 'A' ||
                                   target.tagName === 'BUTTON';
-            
+
             if (isInteractive) return;
-            
-            e.preventDefault();
+
             const rect = this.canvas.getBoundingClientRect();
             const touch = e.touches[0];
-            
+
             const touchX = touch.clientX - rect.left;
             const touchY = touch.clientY - rect.top;
-            
+
             if (touchX >= 0 && touchX <= rect.width && touchY >= 0 && touchY <= rect.height) {
                 this.createRipple(touchX, touchY);
             }
-        }, { passive: false });
+        }, { passive: true });
     }
     
     createRipple(x, y) {
