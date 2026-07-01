@@ -39,6 +39,9 @@
 html {
     scroll-behavior: smooth;
     font-size: 16px;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: auto;
 }
 
 body {
@@ -47,6 +50,10 @@ body {
     color: var(--color-text-primary);
     line-height: 1.8;
     overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-y pinch-zoom;
+    -webkit-tap-highlight-color: transparent;
 }
 
 /* 选中文本样式 */
@@ -165,7 +172,8 @@ body {
     text-align: center;
     background: #0a0a0f;
     position: relative;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: visible;
 }
 
 /* 涟漪画布 - 全屏覆盖 */
@@ -1040,11 +1048,7 @@ body {
    动画效果
 ======================================== */
 
-/* 全局平滑滚动 */
-html {
-    scroll-behavior: smooth;
-}
-
+/* 全局样式补充 */
 body {
     transition: opacity 0.8s ease;
 }
